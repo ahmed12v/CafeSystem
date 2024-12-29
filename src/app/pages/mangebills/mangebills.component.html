@@ -24,7 +24,7 @@
     
     
           <div class="form-floating mb-3">
-            <input type="" formControlName="startDate" class="form-control" id="floatingInput" placeholder="" >
+            <input  formControlName="startDate" type="date" class="form-control" id="floatingInput" placeholder="" >
                 <label for="floatingInput">Start date</label>
     
                 @if (BillForm.get('startDate')?.errors && BillForm.get('startDate')?.touched){
@@ -38,7 +38,7 @@
                                      
     
           <div class="form-floating mb-5">
-            <input type='' formControlName="endDate" class="form-control" id="floatingInput" placeholder="" >
+            <input  type="date" formControlName="endDate" class="form-control" id="floatingInput" placeholder="" >
                 <label for="floatingInput">End date</label>
     
                 @if (BillForm.get('endDate')?.errors && BillForm.get('endDate')?.touched){

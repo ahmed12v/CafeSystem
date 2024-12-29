@@ -20,29 +20,33 @@ import { UpdateUserdataComponent } from './addtions/update-userdata/update-userd
 import { UpdateUserPasswordComponent } from './addtions/update-user-password/update-user-password.component';
 
 export const routes: Routes = [
-    {path:'', redirectTo:'home',pathMatch:'full'},
-    {path:'home', component:HomeComponent },
-    //////////////////////////////////////////
-    {path:'employee', component:MangEmpComponent ,  },
-    {path:'addemp', component:AddempComponent ,  },
-    {path:'updatemp/:id', component:UpdatempComponent ,  },
-    //////////////////////////////////////////////
-    {path:'order', component:MangOrderComponent ,  },
-    ///////////////////////////////////////////
-    {path:'bills', component:MangebillsComponent ,  },
-    ///////////////////////////////////////////
-    {path:'drink', component:MangDrinksComponent ,  },
-    {path:'adddrink', component:AddDrinkComponent ,  },
-    {path:'updatdrink/:id', component:UpdatDrinkComponent ,  },
-    ////////////////////////////////////////////
-    {path:'login', component:LoginComponent },
-    {path:'forgetpassword', component:ForgetpassComponent },
-    {path:'verviycode', component:VrifycodeComponent },
-    {path:'newpass', component:NewpasswordComponent },
-    {path:'getme', component:UserdataComponent },
-    {path:'Udata', component:UpdateUserdataComponent },
-    {path:'Upass', component:UpdateUserPasswordComponent },
-    /////////////////////////////////////////////
-    {path:'signin', component:SignInComponent },
-    {path:'**', component:NotFoundComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./pages/home/home.component').then((c) => c.HomeComponent),
+  },
+  //////////////////////////////////////////
+  { path: 'employee', component: MangEmpComponent },
+  { path: 'addemp', component: AddempComponent },
+  { path: 'updatemp/:id', component: UpdatempComponent },
+  //////////////////////////////////////////////
+  { path: 'order', component: MangOrderComponent },
+  ///////////////////////////////////////////
+  { path: 'bills', component: MangebillsComponent },
+  ///////////////////////////////////////////
+  { path: 'drink', component: MangDrinksComponent },
+  { path: 'adddrink', component: AddDrinkComponent },
+  { path: 'updatdrink/:id', component: UpdatDrinkComponent },
+  ////////////////////////////////////////////
+  { path: 'login', component: LoginComponent },
+  { path: 'forgetpassword', component: ForgetpassComponent },
+  { path: 'verviycode', component: VrifycodeComponent },
+  { path: 'newpass', component: NewpasswordComponent },
+  { path: 'getme', component: UserdataComponent },
+  { path: 'Udata', component: UpdateUserdataComponent },
+  { path: 'Upass', component: UpdateUserPasswordComponent },
+  /////////////////////////////////////////////
+  { path: 'signin', component: SignInComponent },
+  { path: '**', component: NotFoundComponent },
 ];

@@ -1,112 +1,138 @@
-<section class="text-center ">
-    <div class="container w-50 bord mt-4 rounded-3 shadow-lg   bg-white">
+<section class="text-center">
+  <div class="container w-50 bord mt-4 rounded-3 shadow-lg bg-white">
+    <form [formGroup]="signinForm" (ngSubmit)="submitSign()">
+      <h1 class="text-black fw-bold p-3 mb-5">Sign up</h1>
+      @if (errmsg) {
+      <div class="alert alert-danger p-0 m-0 text-center mb-3">
+        <p class="text-black p-1 m-0">
+          {{ errmsg }} <i class="fa-solid fa-triangle-exclamation"></i>
+        </p>
+      </div>
 
-        
+      }
 
-        <form  [formGroup]="signinForm" (ngSubmit)="submitSign()">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          id="name"
+          placeholder=""
+        />
+        <label for="name">name</label>
 
-            <h1 class="text-black fw-bold p-3 mb-5">
-                Sign up 
-            </h1>
-            @if (errmsg) {
-              <div class="alert alert-danger p-0 m-0 text-center mb-3">
-                <p class="text-black p-1 m-0 ">   {{errmsg}} <i class="fa-solid fa-triangle-exclamation"></i>  </p>
-                    </div>
+        @if (signinForm.get('name')?.errors && signinForm.get('name')?.touched)
+        {
+        <div class="p-0 m-0 alert alert-danger text-start text-black">
+          @if (signinForm.get('name')?.errors?.['required']) {
+          <p class="p-1 m-0 ps-2">
+            Name is requierd <i class="fa-solid fa-triangle-exclamation"></i>
+          </p>
+          } @else if (signinForm.get('name')?.errors?.['minlength']) {
+          <p class="p-1 m-0 ps-2">
+            min Characters = 3 <i class="fa-solid fa-triangle-exclamation"></i>
+          </p>
+          }
+        </div>
+        }
+      </div>
+      <!------------------------------------------------------------------------------------------>
 
-            }
-            
-            <div class="form-floating mb-3">
-                <input type="text" formControlName="name" class="form-control " id="floatingInput" placeholder="">
-                <label for="floatingInput">name</label>
-                
-                @if (signinForm.get('name')?.errors && signinForm.get('name')?.touched) {
-                  <div class="p-0 m-0 alert alert-danger text-start text-black">
-                    @if (signinForm.get('name')?.errors?.['required']) {
-                      <p class="p-1 m-0 ps-2"> Name is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>
-                    }
-                   @else if (signinForm.get('name')?.errors?.['minlength']) {
-                    <p class="p-1 m-0 ps-2"> min Characters = 3  <i class="fa-solid fa-triangle-exclamation"></i> </p>
-                   }
-                   </div>
-                }
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          id="email"
+          placeholder="name@example.com"
+        />
+        <label for="email"> email</label>
 
-                
-              </div>
-     <!------------------------------------------------------------------------------------------>
+        @if (signinForm.get('email')?.errors &&
+        signinForm.get('email')?.touched) {
+        <div class="p-0 m-0 alert alert-danger text-start text-black">
+          @if (signinForm.get('email')?.errors?.['required']) {
+          <p class="p-1 m-0 ps-2">
+            email is requierd <i class="fa-solid fa-triangle-exclamation"></i>
+          </p>
+          } @else if (signinForm.get('email')?.errors?.['email']) {
+          <p class="p-1 m-0 ps-2">
+            inter valid email <i class="fa-solid fa-triangle-exclamation"></i>
+          </p>
+          }
+        </div>
+        }
+      </div>
 
-            <div class="form-floating mb-3">
-                <input type="email" formControlName="email" class="form-control " id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput"> email</label>
+      <!------------------------------------------------------------------------------------------>
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          id="password"
+          placeholder="name@example.com"
+        />
+        <label for="password">password</label>
 
-                @if (signinForm.get('email')?.errors && signinForm.get('email')?.touched) {
-                  <div class="p-0 m-0 alert alert-danger text-start text-black">
-                    @if (signinForm.get('email')?.errors?.['required']) {
-                      <p class="p-1 m-0 ps-2"> email is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>
-                    }
-                   @else if (signinForm.get('email')?.errors?.['email']) {
-                    <p class="p-1 m-0 ps-2">  inter valid email  <i class="fa-solid fa-triangle-exclamation"></i> </p>
-                   }
-                   </div>
-                }
+        @if (signinForm.get('password')?.errors &&
+        signinForm.get('password')?.touched) {
+        <div class="p-0 m-0 alert alert-danger text-start text-black">
+          @if (signinForm.get('password')?.errors?.['required']) {
+          <p class="p-1 m-0 ps-2">
+            password is requierd
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </p>
+          } @else if (signinForm.get('password')?.errors?.['pattern']) {
+          <p class="p-1 m-0 ps-2">
+            password must : A-Z a-z 0-9 min Characters 6
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </p>
+          }
+        </div>
+        }
+      </div>
+      <!------------------------------------------------------------------------------------------>
 
-              </div>
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          formControlName="passwordConfirm"
+          class="form-control"
+          id="passwordConfirm"
+          placeholder="name@example.com"
+        />
+        <label for="passwordConfirm">password comfirm</label>
 
-              <!------------------------------------------------------------------------------------------>
-            <div class="form-floating mb-3">
-                <input type="password" formControlName="password" class="form-control " id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">password</label>
-
-                @if (signinForm.get('password')?.errors && signinForm.get('password')?.touched) {
-                  <div class="p-0 m-0 alert alert-danger text-start text-black">
-                    @if (signinForm.get('password')?.errors?.['required']) {
-                      <p class="p-1 m-0 ps-2"> password is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>
-                    }
-                   @else if (signinForm.get('password')?.errors?.['pattern']) {
-                    <p class="p-1 m-0 ps-2"> password must : A-Z a-z 0-9 min Characters 6  <i class="fa-solid fa-triangle-exclamation"></i> </p>
-                   }
-                   </div>
-                }
-
-              </div>
-             <!------------------------------------------------------------------------------------------>
-   
-            <div class="form-floating mb-3">
-                <input type="password" formControlName="passwordConfirm" class="form-control " id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">password comfirm</label>
-
-                @if (signinForm.get('passwordConfirm')?.errors && signinForm.get('passwordConfirm')?.touched) {
-                  <div class="p-0 m-0 alert alert-danger text-start text-black">
-                    @if (signinForm.get('passwordConfirm')?.errors?.['required']) {
-                      <p class="p-1 m-0 ps-2"> passwordConfirm is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>
-                    }
-                   @else if (signinForm.get('passwordConfirm')?.errors?.['missmatch']) {
-                      <p class="p-1 m-0 ps-2"> password not match  <i class="fa-solid fa-triangle-exclamation"></i> </p>
-                    }
-                   </div>
-                }
-
-              </div>
+        @if (signinForm.get('passwordConfirm')?.errors &&
+        signinForm.get('passwordConfirm')?.touched) {
+        <div class="p-0 m-0 alert alert-danger text-start text-black">
+          @if (signinForm.get('passwordConfirm')?.errors?.['required']) {
+          <p class="p-1 m-0 ps-2">
+            passwordConfirm is requierd
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </p>
+          } @else if (signinForm.get('passwordConfirm')?.errors?.['missmatch'])
+          {
+          <p class="p-1 m-0 ps-2">
+            password not match <i class="fa-solid fa-triangle-exclamation"></i>
+          </p>
+          }
+        </div>
+        }
+      </div>
 
       <!------------------------------------------------------------------------------------------>
 
-            
-
-              <button [disabled]="signinForm.invalid"  class="btn btn-primary bg-black border-black fs-5 mt-3 mb-3 ps-4 pe-4 b-c" >
-                 @if (spiner) {
-                  <span> <i class="fa fa-spin fa-spinner"></i> </span>
-                }
-                  @else {
-                    <span> Sign up </span>
-                  }
-
-                 
-                
-               
-              </button>
-            
-
-        </form>
-
-
-    </div>
+      <button
+        class="btn btn-primary bg-black border-black fs-5 mt-3 mb-3 ps-4 pe-4 b-c"
+      >
+        @if (spiner) {
+        <span> <i class="fa fa-spin fa-spinner"></i> </span>
+        } @else {
+        <span> Sign up </span>
+        }
+      </button>
+    </form>
+  </div>
 </section>
