@@ -1,0 +1,27 @@
+#home{
+    background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.3)),url(/assets/imge/hot-black-coffee-white-marble-cup-paste-reflected-black-glass-floor_44271-56.avif);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+   
+
+}
+.ff{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+.hovr:hover{
+  background-color: white !important;
+  color: black !important;
+  font-weight: 600 !important;
+}
+.items{
+    position: absolute;
+    top: 30%;
+}
+.hovrr:hover{
+    background-color: rgb(0, 0, 0) !important;
+    color: rgb(255, 255, 255) !important;
+    font-weight: 600 !important;
+  }

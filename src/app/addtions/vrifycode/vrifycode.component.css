@@ -1,0 +1,9 @@
+.bord{
+    border: white 2px solid;
+}
+.b-c:hover{
+   background-color: white !important;
+   color: black;
+   border: black solid 1px;
+   font-weight: 700;
+}

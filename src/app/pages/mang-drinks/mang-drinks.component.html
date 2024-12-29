@@ -1,0 +1,50 @@
+@if (dataCome)
+ {
+    <div class="vh-100 d-flex align-items-center justify-content-center">
+        <i class="fa-solid fa-circle-notch fa-spin fs-2 fw-bold spin-c"></i>
+    </div>
+ }
+ @else
+  {
+    <section class=" p-4 ">
+        <div class="container text-center  shadow-sm rounded-3 p-3">
+            <h1 class="fw-bold">
+                YOUR DRINKS  <i class="fa-solid fa-kitchen-set"></i>
+            </h1>
+            <button class="btn bg-white fw-bold btn-hover mt-2 " routerLink="/adddrink">
+            Add new drink <i class="fa-solid fa-mug-hot"></i>
+            </button>
+         <div class="row">
+            @for (item of drinklist; track $index) {
+                 
+                <div class="col-md-3 p-3">
+                    <div class="items bg-white rounded-3 p-3 shadow-sm  text-center">
+                       <p class="fs-3 fw-bold bg-black text-white p-1 rounded-3">
+                              {{item.name}}
+                       </p>
+                       <p class="fs-3 fw-bold bg-black text-white p-1 rounded-3">
+                              {{item.price}} EGP
+                       </p>
+                       <hr>
+                       <div class="d-flex gap-3 align-items-center justify-content-center botns">
+                           <button class="btn btn-warning" [routerLink]="['/updatdrink' , item._id]">
+                                  update
+                           </button>
+                           <button class="btn btn-danger" (click)="deletDrink(item._id)">
+                                  remove
+                           </button>
+                       </div>
+                    </div>
+           
+                   </div>
+            }
+            
+            
+    
+         </div>
+        </div>
+    
+    </section>
+  }
+
+

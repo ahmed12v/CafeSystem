@@ -1,0 +1,55 @@
+<section class="text-center ">
+    <div class="container w-50 bord mt-4 rounded-3 shadow-lg   bg-white">
+  
+        
+  
+        <form  [formGroup]="codeForm" (ngSubmit)="sendcode()">
+  
+            <h1 class="text-black fw-bold p-3 mb-5">
+              Code Confirm :
+            </h1>
+            @if (errMasgeCode) {
+              <div class="alert alert-danger m-o  p-0">
+                <p class="p-1 text-black"> code false  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+        </div>
+            }
+            
+  
+            
+  
+            <div class="form-floating mb-3">
+                <input type="" formControlName="resetCode" class="form-control " id="floatingInput" >
+                <label for="floatingInput"> resetCode </label>
+  
+                @if (codeForm.get('resetCode')?.errors && codeForm.get('resetCode')?.touched) {
+                  <div class="p-0 m-0 alert alert-danger text-start text-black">
+                    @if (codeForm.get('resetCode')?.errors?.['required']) {
+                      <p class="p-1 m-0 ps-2"> resetCode is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+                    }
+                   </div>
+                }
+  
+              </div>
+  
+            
+             
+  
+      <!------------------------------------------------------------------------------------------>
+  
+            
+  
+              <button [disabled]="codeForm.invalid"  class="btn btn-primary bg-black border-black fs-5 mt-3 mb-3 ps-4 pe-4 b-c" >
+                 @if (spiner) {
+                  <span> <i class="fa fa-spin fa-spinner"></i> </span>
+                }
+                  @else {
+                    <span> Send code</span>
+                  }
+  
+              </button>
+                             
+        </form>
+  
+  
+    </div>
+  </section>

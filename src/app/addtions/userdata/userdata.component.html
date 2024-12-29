@@ -1,0 +1,48 @@
+@if (dataCome)
+ {
+    <div class="vh-100 d-flex align-items-center justify-content-center">
+        <i class="fa-solid fa-circle-notch fa-spin fs-2 fw-bold spin-c text-primary"></i>
+    </div>
+ }@else {
+    <section>
+        <div class="container bg-white shadow-lg rounded-3 p-5 mt-3">
+            <div class="row text-center d-flex align-items-center justify-content-center">
+                <div class="col-md-8 text-center bg-primary shadow-sm rounded-3 p-3 ">
+                           <h1 class="text-white fs-3">
+                            My Acount <i class="fa-regular fa-circle-user"></i>
+                           </h1>
+                           <hr class="text-white">
+                           <div class="data text-white text-start w-75  ms-5 p-2 ">
+                           
+    
+                                <h3 class=""> <span class="text-black-50"> Name :</span> {{userData.name}}  </h3>
+                            <hr class="text-white">
+                            <h3 class=""> <span class="text-black-50"> Email :</span> {{userData.email}}  </h3>
+                            <hr class="text-white">
+                            <h3 class=""> <span class="text-black-50"> Password :</span> -*-*-*-*-   </h3>
+                            <hr class="text-white">
+                            <h3 class=""> <span class="text-black-50"> Role :</span> {{userData.role}}   </h3>
+                              
+    
+                            
+                              
+                            
+                           </div>
+                           <hr class="text-white">
+    
+    
+    
+                           <div class="update text-center">
+                            <p routerLink="/Udata" class="text-decoration-underline fs-5 text-warning fw-bold cur"> updat  name & email </p>
+                            <p routerLink="/Upass" class="text-decoration-underline fs-5 text-warning fw-bold cur"> updat  Password </p>
+    
+                         </div>
+                </div>
+    
+            </div>
+    
+        </div>
+    </section>
+ }
+
+

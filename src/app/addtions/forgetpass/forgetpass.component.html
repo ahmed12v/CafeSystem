@@ -1,0 +1,59 @@
+<section class="text-center ">
+    <div class="container w-50 bord mt-4 rounded-3 shadow-lg   bg-white">
+  
+        
+  
+        <form  [formGroup]="forgetForm" (ngSubmit)="sendemail()">
+  
+            <h1 class="text-black fw-bold p-3 mb-5">
+               Email Confirm :
+            </h1>
+            @if (errMasge) {
+              <div class="alert alert-danger m-o mb-1 p-0">
+                <p class="p-1 text-black"> There is no user with that email  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+        </div>
+            }
+            
+  
+            
+  
+            <div class="form-floating mb-3">
+                <input type="email" formControlName="email" class="form-control " id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput"> email</label>
+  
+                @if (forgetForm.get('email')?.errors && forgetForm.get('email')?.touched) {
+                  <div class="p-0 m-0 alert alert-danger text-start text-black">
+                    @if (forgetForm.get('email')?.errors?.['required']) {
+                      <p class="p-1 m-0 ps-2"> email is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+                    }
+                   @else if (forgetForm.get('email')?.errors?.['email']) {
+                    <p class="p-1 m-0 ps-2">  inter valid email  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+                   }
+                   </div>
+                }
+  
+              </div>
+  
+            
+             
+  
+      <!------------------------------------------------------------------------------------------>
+  
+            
+  
+              <button [disabled]="forgetForm.invalid"  class="btn btn-primary bg-black border-black fs-5 mt-3 mb-3 ps-4 pe-4 b-c" >
+                 @if (spiner) {
+                  <span> <i class="fa fa-spin fa-spinner"></i> </span>
+                }
+                  @else {
+                    <span> Send email</span>
+                  }
+  
+              </button>
+                             
+        </form>
+  
+  
+    </div>
+  </section>
+  

@@ -1,0 +1,127 @@
+ 
+ @if (come == false) { 
+
+  <section class="text-center">
+    <div class="container  w-50  mt-4 rounded-3 shadow-lg p-3  bg-color">
+    <form [formGroup]="BillForm" (submit)="getBill()" >
+    
+        <h1 class="text-white fw-bold p-3 mb-5">
+            Employee Bill
+        </h1>
+    
+        <div class="form-floating mb-3">
+          <input type="" formControlName="employeeName" class="form-control" id="floatingInput" placeholder="">
+              <label for="floatingInput">employeeName</label>
+    
+              @if (BillForm.get('employeeName')?.errors && BillForm.get('employeeName')?.touched){
+                <div class="p-0 m-0 alert alert-danger text-start text-black">
+                  @if (BillForm.get('employeeName')?.errors?.['required']) {
+                    <p class="p-1 m-0 ps-2"> employeeName is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>}
+                
+                      </div>}
+           </div>                              
+    
+    
+    
+          <div class="form-floating mb-3">
+            <input type="" formControlName="startDate" class="form-control" id="floatingInput" placeholder="" >
+                <label for="floatingInput">Start date</label>
+    
+                @if (BillForm.get('startDate')?.errors && BillForm.get('startDate')?.touched){
+                  <div class="p-0 m-0 alert alert-danger text-start text-black">
+                    @if (BillForm.get('startDate')?.errors?.['required']) {
+                      <p class="p-1 m-0 ps-2"> startDate is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>}
+                  
+                        </div>}
+             </div>                              
+    
+                                     
+    
+          <div class="form-floating mb-5">
+            <input type='' formControlName="endDate" class="form-control" id="floatingInput" placeholder="" >
+                <label for="floatingInput">End date</label>
+    
+                @if (BillForm.get('endDate')?.errors && BillForm.get('endDate')?.touched){
+                  <div class="p-0 m-0 alert alert-danger text-start text-black">
+                    @if (BillForm.get('endDate')?.errors?.['required']) {
+                      <p class="p-1 m-0 ps-2"> endDate is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>}
+                  
+                        </div>}
+             </div>  
+             
+                                        
+    
+                      <button [disabled]="BillForm.invalid"  class="btn btn-primary  fs-5 mt-3 mb-3 ps-4 pe-4 b-c" >
+                        @if (spiner) {
+                         <span> <i class="fa fa-spin fa-spinner"></i> </span>
+                                    }
+                                      @else {
+                                       <span> Get Bill </span>
+                                             }  </button>             
+    
+    </form>
+    </div>
+     </section>
+
+ 
+    }
+
+ 
+
+
+
+
+ @if (come ) {
+
+  <section  class=" m-5 ">  
+   
+   
+
+    <div class=" container bg-color rounded-3 p-4 text-white align-content-center justify-content-center text-center">
+
+      <p> @if (showone) {<h1>  <span class=" fw-bold text-white "> this bill for {{showone.employee}}</span>  </h1>} </p>
+
+     @if (showone) {<p> Employee Name : <span class=" fw-bold text-white "> {{showone.employee}}</span>  </p>} 
+
+      
+ <!---    @for (item of showtwo; track $index  ) { 
+
+        <p> driink  : <span class=" fw-bold text-white "> {{item.drinks[counter].drinkId.name}}</span>  </p>
+        <p> price : <span class=" fw-bold text-white "> {{item.drinks[counter].price}}</span>  </p>
+        <hr>
+
+        
+
+      }---> 
+            
+             
+                  
+              <!-- {{showtwo}} -->
+      
+            
+     
+
+      @if (showone) {<p> Total : <span class=" fw-bold text-white "> {{showone.totalBill}} EGP</span>  </p>} 
+      <!-- @if (showone) {<p> paid : <span class=" fw-bold text-white "> {{showone.orders[0].paid}} </span>  </p>}  -->
+      @if (showone) {<p> paid : <span class=" fw-bold text-white "> {{showone.orders[0].paid}} </span>  </p>} 
+
+    </div>
+    
+    
+      
+  
+  
+
+  </section>
+
+
+ }
+ 
+
+
+
+
+
+
+
+

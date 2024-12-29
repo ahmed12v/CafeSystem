@@ -1,0 +1,26 @@
+.cs-nav{
+    
+    background-color:rgb(255, 255, 255);
+}
+.pages{
+    position: absolute;
+    right: 25%;
+}
+.logo{
+    position: absolute;
+    left: 5%;
+}
+.ff{
+    font-family: fantasy;
+}
+.RLAC{
+    border: 1px rgb(0, 0, 0) solid ;
+    color: rgb(255, 255, 255) !important;
+    background-color: black;
+}
+.log-hover:hover{
+    border: 1px rgb(187, 0, 0) solid;
+    background-color: rgb(187, 0, 0) ;
+    color: rgb(255, 255, 255) !important;
+    
+}

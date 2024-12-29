@@ -1,0 +1,74 @@
+<section class="text-center ">
+  <div class="container w-50 bord mt-4 rounded-3 shadow-lg   bg-white">
+
+      
+
+      <form  [formGroup]="logininForm" (ngSubmit)="submitLogin()">
+
+          <h1 class="text-black fw-bold p-3 mb-5">
+              Login 
+          </h1>
+
+          @if (errmsg) {
+            <div class="alert alert-danger p-0 m-0 text-center mb-3">
+              <p class="text-black p-1 m-0 ">  Email or Password Un Correct <i class="fa-solid fa-triangle-exclamation"></i>  </p>
+                  </div>}
+
+          <div class="form-floating mb-3">
+              <input type="email" formControlName="email" class="form-control " id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput"> email</label>
+
+              @if (logininForm.get('email')?.errors && logininForm.get('email')?.touched) {
+                <div class="p-0 m-0 alert alert-danger text-start text-black">
+                  @if (logininForm.get('email')?.errors?.['required']) {
+                    <p class="p-1 m-0 ps-2"> email is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+                  }
+                 @else if (logininForm.get('email')?.errors?.['email']) {
+                  <p class="p-1 m-0 ps-2">  inter valid email  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+                 }
+                 </div>
+              }
+
+            </div>
+
+            <!------------------------------------------------------------------------------------------>
+          <div class="form-floating mb-3">
+              <input type="password" formControlName="password" class="form-control " id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">password</label>
+
+              @if (logininForm.get('password')?.errors && logininForm.get('password')?.touched) {
+                <div class="p-0 m-0 alert alert-danger text-start text-black">
+                  @if (logininForm.get('password')?.errors?.['required']) {
+                    <p class="p-1 m-0 ps-2"> password is requierd  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+                  }
+                 @else if (logininForm.get('password')?.errors?.['pattern']) {
+                  <p class="p-1 m-0 ps-2"> password must : A-Z a-z 0-9 min Characters 6  <i class="fa-solid fa-triangle-exclamation"></i> </p>
+                 }
+                 </div>
+              }
+
+            </div>
+           
+
+    <!------------------------------------------------------------------------------------------>
+
+          
+
+            <button [disabled]="logininForm.invalid"  class="btn btn-primary bg-black border-black fs-5 mt-3 mb-3 ps-4 pe-4 b-c" >
+               @if (spiner) {
+                <span> <i class="fa fa-spin fa-spinner"></i> </span>
+              }
+                @else {
+                  <span> Log in </span>
+                }
+
+            </button>
+                           <p class="fw-bold text-decoration-underline cur" routerLink="/forgetpassword">
+                            Forget password 
+                           </p>
+                         
+      </form>
+
+
+  </div>
+</section>

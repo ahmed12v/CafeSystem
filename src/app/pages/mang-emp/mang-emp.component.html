@@ -1,0 +1,52 @@
+@if (dataCome)
+ {
+    <div class="vh-100 d-flex align-items-center justify-content-center">
+        <i class="fa-solid fa-circle-notch fa-spin fs-2 fw-bold spin-c"></i>
+    </div>
+ }
+ @else {
+    <section class="container shadow-lg mt-3  p-3 rounded-2">
+        <div class="d-flex justify-content-between">
+            <h1 class="fw-bold  pb-4"> Employee List   <i class="fa-solid fa-house-user"></i> </h1>
+             <p class="fs-4 fw-bolder"><span class=""> Add Employe</span> :  <i routerLink="/addemp" class="cur text-primary fa-solid fa-user-plus"></i> </p>
+        </div>
+        <!------------------------------------  search  ------------------------------------------------------>
+    
+       
+     <!---------------------------------------------------------------------------------------------------->
+     @for (emp of empList; track $index) {
+        <div class="row iteem-emp rounded-3 p-3 shadow-sm cur ">
+            <div class="col-md-1 d-flex justify-content-center align-items-center">
+                <i class="fs-1 fa-solid fa-user-tie person-icon"></i>
+        
+            </div>
+            <div class="col-md-8  p-2 rounded-3  align-items-center d-flex">
+              <div class=" text-center  p-3 rounded-3">
+        
+                
+                   <div class="p-3 text-start">
+                    <h3 class=""> <span class="fw-bold text-dark-emphasis">Name</span>: {{emp.name}} </h3>
+                    <h3 class=""> <span  class="fw-bold text-dark-emphasis">Role</span> :  {{emp.role}}         </h3>
+                   </div>
+        
+                   
+                   
+              </div>
+            </div>
+            <div class="col-md-3">
+                <div class=" d-flex gap-2 justify-content-center  align-items-center botns h-100">
+                    <button class="btn btn-warning updat-btn " [routerLink]="['/updatemp' , emp._id]">
+                               update     <i class="fa-solid fa-wrench"></i>
+                    </button>
+                    <button class="btn btn-danger delet-btn" (click)="deletemp(emp._id)" >
+                               delete    <i class="fa fa-solid fa-trash-can"></i>
+                    </button>
+                   </div>
+            </div>
+           </div>
+     }
+       
+    </section>
+ }
+
+

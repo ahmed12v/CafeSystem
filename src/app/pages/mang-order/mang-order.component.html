@@ -1,0 +1,87 @@
+<section class="container w-75">
+  <form [formGroup]="drinksForm" (ngSubmit)="TakeOrder()">
+    <div>
+      <label for=""> employeeName </label>
+      <select
+        class="form-select p-3"
+        id="inputGroupSelect02"
+        formControlName="employeeName"
+        name=""
+        id=""
+      >
+        <option selected>chose name..</option>
+        @for (item of empList; track $index) {
+        <option value="{{ item.name }}">{{ item.name }}</option>
+        }
+      </select>
+
+      <!-------------Araay------------>
+
+      <h2>
+        drinks :
+        <button class="btn btn-success" (click)="addDrinks()">
+          <i class="fa-solid fa-circle-plus"></i>
+        </button>
+      </h2>
+
+      <div class="container mb-3" formArrayName="drinks">
+        @for (item of drinks().controls; track item ;let i = $index ) {
+
+        <div class="row mb-2" [formGroupName]="i">
+          <div class="col-lg-6">
+            <div class="input-group mb-3">
+              <select
+                class="form-select p-3"
+                id="inputGroupSelect02"
+                formControlName="drinkId"
+              >
+                <option selected>chose drink..</option>
+                @for (item of drinklist; track $index) {
+                <option>{{ item._id }}</option>
+                }
+              </select>
+              <label class="input-group-text" for="inputGroupSelect02"
+                >drink name list</label
+              >
+            </div>
+            <div class="col-lg-5">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  formControlName="quantity"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder=""
+                />
+                <label for="floatingInput">quantity</label>
+              </div>
+            </div>
+
+            <div class="col-lg-1">
+              <h2>
+                <button class="btn btn-success" (click)="removeDrinks(i)">
+                  <i class="fa-solid fa-circle-minus"></i>
+                </button>
+              </h2>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+
+      <!--------------------------------------------------------------->
+      <div class="form-floating mb-3">
+        <input
+          type="date"
+          formControlName="date"
+          class="form-control"
+          id="floatingInput"
+          placeholder=""
+        />
+        <label for="floatingInput">date</label>
+      </div>
+    </div>
+
+    <button class="btn btn-success">Send order</button>
+  </form>
+</section>

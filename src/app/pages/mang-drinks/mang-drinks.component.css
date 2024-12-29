@@ -1,0 +1,23 @@
+.container{
+    background-color: rgb(209, 162, 80);
+}
+.btn-hover{
+    transition: all 1s;
+}
+.btn-hover:hover {
+    background-color: black !important;
+    color: rgb(209, 162, 80) ;
+}
+.botns{
+   
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all .8s;
+}
+.items:hover .botns{
+    transform: translateY(0%);
+    opacity: 1;
+}
+.spin-c{
+    color:rgb(209, 162, 80) ;
+}
