@@ -19,13 +19,13 @@
 
       <h2>
         drinks :
-        <button class="btn btn-success" (click)="addDrinks()">
+        <button class="btn btn-success" (click)="addDrinks()" type="button">
           <i class="fa-solid fa-circle-plus"></i>
         </button>
       </h2>
 
       <div class="container mb-3" formArrayName="drinks">
-        @for (item of drinks().controls; track item ;let i = $index ) {
+        @for (item of drinks.controls; track item ;let i = $index ) {
 
         <div class="row mb-2" [formGroupName]="i">
           <div class="col-lg-6">
@@ -37,7 +37,9 @@
               >
                 <option selected>chose drink..</option>
                 @for (item of drinklist; track $index) {
-                <option>{{ item._id }}</option>
+                <option [value]="item._id" class="d-block">
+                  <p class="pe-5">{{ item.name }}</p>
+                </option>
                 }
               </select>
               <label class="input-group-text" for="inputGroupSelect02"

@@ -27,7 +27,10 @@ export const routes: Routes = [
       import('./pages/home/home.component').then((c) => c.HomeComponent),
   },
   //////////////////////////////////////////
-  { path: 'employee', component: MangEmpComponent },
+  { path: 'employee', 
+    loadComponent: () => 
+      import ('./pages/mang-emp/mang-emp.component').then((c)=> c.MangEmpComponent)
+     },
   { path: 'addemp', component: AddempComponent },
   { path: 'updatemp/:id', component: UpdatempComponent },
   //////////////////////////////////////////////

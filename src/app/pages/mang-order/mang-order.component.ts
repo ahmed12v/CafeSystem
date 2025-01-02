@@ -57,7 +57,8 @@ export class MangOrderComponent implements OnInit {
       quantity: new FormControl('', { updateOn: 'blur' }),
     });
 
-    this.drinks.push(drinks);
+    this.drinks.push(drinks); 
+    
   }
 
   getEmps() {

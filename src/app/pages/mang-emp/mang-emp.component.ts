@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-mang-emp',
   standalone: true,
-  imports: [RouterLink],
+ // imports: [RouterLink],
   templateUrl: './mang-emp.component.html',
   styleUrl: './mang-emp.component.css'
 })
