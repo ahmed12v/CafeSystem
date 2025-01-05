@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './mang-emp.component.html',
-  styleUrl: './mang-emp.component.css',
+  // styleUrl: './mang-emp.component.css'
 })
 export class MangEmpComponent implements OnInit {
   ngOnInit(): void {

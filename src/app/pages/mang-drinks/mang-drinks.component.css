@@ -1,8 +1,8 @@
 .container{
-    background-color: rgb(209, 162, 80);
+    background-color: rgb(177, 173, 173);
 }
 .btn-hover{
-    transition: all 1s;
+    transition: all 2s;
 }
 .btn-hover:hover {
     background-color: black !important;

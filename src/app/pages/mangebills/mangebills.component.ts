@@ -1,30 +1,26 @@
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
 import { EmployeService } from '../../servess/pages/employe.service';
-import { EmpData } from '../../interfaces/pages/emp';
 import { BillService } from '../../servess/pages/bill.service';
+import { EmpData } from '../../interfaces/pages/emp';
 import { Order, respon } from '../../interfaces/pages/bill';
+
+declare var bootstrap: any; // Ensure Bootstrap types are available
 
 @Component({
   selector: 'app-mangebills',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule], // Make sure ReactiveFormsModule is included
   templateUrl: './mangebills.component.html',
-  styleUrl: './mangebills.component.css',
+  styleUrls: ['./mangebills.component.css'],
 })
 export class MangebillsComponent implements OnInit {
-  ngOnInit(): void {
-    if (typeof localStorage != 'undefined')
-      localStorage.setItem('last Page', '/bills');
-
-    ///////////////call//////////////
-    // this.getEmps();
-  }
+  @ViewChild('successToast', { static: false }) successToast!: ElementRef;
 
   constructor(
     private _EmployeService: EmployeService,
@@ -37,46 +33,49 @@ export class MangebillsComponent implements OnInit {
     endDate: new FormControl('', Validators.required),
   });
 
-  getEmps() {
-    // this.dataCome=true;
-    this._EmployeService.getAllEmp().subscribe({
-      next: (res) => {
-        // this.dataCome=false;
-        this.empList = res.data;
-        // console.log(this.empList);
-      },
-      error: (err) => {
-        console.log(err);
-        // this.dataCome=false;
-      },
-    });
-  }
   empList!: EmpData[];
   spiner: boolean = false;
   come: boolean = false;
-
-  ///////////////////////////////////////
   showone!: respon;
   showtwo!: Order[];
+  successMessage: string = '';
 
-  counter: number = 0;
+  ngOnInit(): void {
+    localStorage.setItem('last Page', '/bills');
+  }
 
   getBill() {
     if (this.BillForm.valid) {
       this.spiner = true;
       this._BillService.getBill(this.BillForm.value).subscribe({
         next: (res) => {
-          console.log(res);
           this.spiner = false;
           this.come = true;
           this.showone = res;
           this.showtwo = res.orders;
         },
         error: (err) => {
-          console.log(err);
           this.spiner = false;
+          console.error(err);
         },
       });
     }
+  }
+
+  markAsPaid() {
+    const employeeName = this.BillForm.value.employeeName;
+    this._BillService.markBillAsPaid(employeeName).subscribe({
+      next: () => {
+        this.successMessage = 'The bill has been marked as paid successfully!';
+        this.showone.orders[0].paid = true;
+
+        // Show the toast
+        const toast = new bootstrap.Toast(this.successToast.nativeElement);
+        toast.show();
+      },
+      error: (err) => {
+        console.error('Error marking bill as paid:', err);
+      },
+    });
   }
 }

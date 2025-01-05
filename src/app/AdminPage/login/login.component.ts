@@ -38,9 +38,9 @@ export class LoginComponent {
       this.logininForm.markAllAsTouched();
       return;
     }
-
+    this.spiner = true;
     this._LoginService.login(this.logininForm.value).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         localStorage.setItem('usertokenlogin', res.token);
         this._LoginService.decoUserdata();
         this._Router.navigate(['/order']);
