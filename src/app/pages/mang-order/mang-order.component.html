@@ -1,50 +1,34 @@
 <section class="container w-75">
   <form [formGroup]="drinksForm" (ngSubmit)="TakeOrder()">
     <div>
-      <label for=""> employeeName </label>
+      <label for="">Employee Name</label>
       <select
         class="form-select p-3"
-        id="inputGroupSelect02"
         formControlName="employeeName"
-        name=""
-        id=""
+        id="inputGroupSelect02"
       >
-        <option selected>chose name..</option>
+        <option selected>Choose name...</option>
         @for (item of empList; track $index) {
         <option value="{{ item.name }}">{{ item.name }}</option>
         }
       </select>
 
-      <!-------------Araay------------>
-
-      <h2>
-        drinks :
-        <button class="btn btn-success" (click)="addDrinks()" type="button">
-          <i class="fa-solid fa-circle-plus"></i>
-        </button>
-      </h2>
+      <h2>Drinks:</h2>
+      <button class="btn btn-success" (click)="addDrinks()" type="button">
+        <i class="fa-solid fa-circle-plus"></i>
+      </button>
 
       <div class="container mb-3" formArrayName="drinks">
-        @for (item of drinks.controls; track item ;let i = $index ) {
-
+        @for (item of drinks.controls; track item; let i = $index) {
         <div class="row mb-2" [formGroupName]="i">
           <div class="col-lg-6">
             <div class="input-group mb-3">
-              <select
-                class="form-select p-3"
-                id="inputGroupSelect02"
-                formControlName="drinkId"
-              >
-                <option selected>chose drink..</option>
+              <select class="form-select p-3" formControlName="drinkId">
+                <option selected>Choose drink...</option>
                 @for (item of drinklist; track $index) {
-                <option [value]="item._id" class="d-block">
-                  <p class="pe-5">{{ item.name }}</p>
-                </option>
+                <option [value]="item._id">{{ item.name }}</option>
                 }
               </select>
-              <label class="input-group-text" for="inputGroupSelect02"
-                >drink name list</label
-              >
             </div>
             <div class="col-lg-5">
               <div class="form-floating mb-3">
@@ -55,7 +39,7 @@
                   id="floatingInput"
                   placeholder=""
                 />
-                <label for="floatingInput">quantity</label>
+                <label for="floatingInput">Quantity</label>
               </div>
             </div>
 
@@ -71,7 +55,6 @@
         }
       </div>
 
-      <!--------------------------------------------------------------->
       <div class="form-floating mb-3">
         <input
           type="date"
@@ -80,10 +63,31 @@
           id="floatingInput"
           placeholder=""
         />
-        <label for="floatingInput">date</label>
+        <label for="floatingInput">Date</label>
       </div>
     </div>
 
-    <button class="btn btn-success">Send order</button>
+    <button class="btn btn-success">Send Order</button>
   </form>
 </section>
+
+<!-- Toast Notification -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div
+    class="toast align-items-center text-bg-success border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    #successToast
+  >
+    <div class="d-flex">
+      <div class="toast-body">Order placed successfully!</div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+</div>

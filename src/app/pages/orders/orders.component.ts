@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OrdersService } from 'src/app/servess/pages/orders.service';
 // import { RouterLink, RouterLinkActive } from '@angular/router';
 
+declare var bootstrap: any;
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css'],
 })
 export class OrdersComponent implements OnInit {
+  @ViewChild('successToast', { static: false }) successToast!: ElementRef;
   orders: any[] = [];
   isLoading = true;
 
@@ -44,6 +46,8 @@ export class OrdersComponent implements OnInit {
         if (order) {
           order.paid = true;
         }
+        const toast = new bootstrap.Toast(this.successToast.nativeElement);
+        toast.show();
       },
       error: (err) => {
         console.error(err);

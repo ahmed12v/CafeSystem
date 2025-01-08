@@ -14,7 +14,16 @@ export class OrdersService {
     return this.http.get(`${this.baseUrl}/orders`);
   }
 
+  // markAsPaid(employeeName: string): Observable<any> {
+  //   return this.http.post(`${this.baseUrl}/pay`, { employeeName });
+  // }
   markAsPaid(employeeName: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/pay`, { employeeName });
+    // let token = localStorage.getItem('usertokenlogin');
+    // let headers = new HttpHeaders();
+    // if (token) {
+    //   headers = headers.set('Authorization', 'Bearer ' + token);
+    // }
+    const body = { employeeName };
+    return this.http.put<any>(`${this.baseUrl}/pay`, body);
   }
 }

@@ -1,28 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { EmployeService } from '../../servess/pages/employe.service';
 import { EmpData } from '../../interfaces/pages/emp';
 import { drinkRes } from '../../interfaces/drinks';
 import { DrinkService } from '../../servess/pages/drink.service';
+import { BillService } from '../../servess/pages/bill.service';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
+  FormArray,
   Validators,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { BillService } from '../../servess/pages/bill.service';
+
+declare var bootstrap: any; // Ensure Bootstrap types are available
 
 @Component({
-  selector: 'app-mang-order',
+  imports: [ReactiveFormsModule],
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, CommonModule],
+  selector: 'app-mang-order',
   templateUrl: './mang-order.component.html',
-  styleUrl: './mang-order.component.css',
+  styleUrls: ['./mang-order.component.css'],
 })
 export class MangOrderComponent implements OnInit {
+  @ViewChild('successToast', { static: false }) successToast!: ElementRef;
+
   drinksForm: FormGroup;
   empList!: EmpData[];
   drinklist!: drinkRes[];
@@ -30,6 +32,7 @@ export class MangOrderComponent implements OnInit {
   get drinks(): FormArray {
     return this.drinksForm.get('drinks') as FormArray;
   }
+
   constructor(
     private _BillService: BillService,
     private _EmployeService: EmployeService,
@@ -44,9 +47,6 @@ export class MangOrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (typeof localStorage != 'undefined')
-      localStorage.setItem('last Page', '/order');
-
     this.getEmps();
     this.getDrinks();
   }
@@ -56,56 +56,46 @@ export class MangOrderComponent implements OnInit {
       drinkId: new FormControl('', { updateOn: 'blur' }),
       quantity: new FormControl('', { updateOn: 'blur' }),
     });
-
-    this.drinks.push(drinks); 
-    
+    this.drinks.push(drinks);
   }
 
   getEmps() {
-    // this.dataCome=true;
     this._EmployeService.getAllEmp().subscribe({
       next: (res) => {
-        // this.dataCome=false;
         this.empList = res.data;
-        // console.log(this.empList);
       },
       error: (err) => {
         console.log(err);
-        // this.dataCome=false;
       },
     });
   }
+
   getDrinks() {
-    //this.dataCome=true;
     this._DrinkService.getAlldrink().subscribe({
       next: (res) => {
-        //   this.dataCome=false;
-        // console.log(res.data);
         this.drinklist = res.data;
       },
       error: (err) => {
-        // this.dataCome=false;
         console.log(err);
       },
     });
   }
-  ///////////////////
-  ///////////////////////
 
   TakeOrder() {
     if (this.drinksForm.valid) {
       this._BillService.TakeOrder(this.drinksForm.value).subscribe({
         next: (res) => {
-          //   this.dataCome=false;
           console.log(res);
-          // this.drinklist=res.data;
+
+          // Trigger success toast
+          const toast = new bootstrap.Toast(this.successToast.nativeElement);
+          toast.show();
         },
         error: (err) => {
-          // this.dataCome=false;
           console.log(err);
         },
         complete: () => {
-          console.log('compliteeeee');
+          console.log('Order completed!');
         },
       });
     }

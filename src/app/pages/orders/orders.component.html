@@ -1,15 +1,16 @@
 <section class="container mt-5">
   <h1 class="text-center mb-4">Employee Orders</h1>
-  @if(isLoading) {
+
+  @if (isLoading) {
   <div class="text-center">
     <p>Loading orders...</p>
   </div>
-  } @if(!isLoading ) {
+  } @if (!isLoading && orders.length === 0) {
   <div class="text-center">
     <p>No orders found.</p>
   </div>
-  } @if(!isLoading) {
-  <table class="table table-striped table-dark">
+  } @if (!isLoading && orders.length > 0) {
+  <table class="table table-striped table-white">
     <thead>
       <tr>
         <th>Employee Name</th>
@@ -19,7 +20,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of orders">
+      @for (order of orders; track order.id) {
+      <tr>
         <td>{{ order.employeeName }}</td>
         <td>{{ order.totalPrice }} EGP</td>
         <td>
@@ -40,6 +42,7 @@
           </button>
         </td>
       </tr>
+      }
     </tbody>
   </table>
   }
