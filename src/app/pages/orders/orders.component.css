@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+    margin: auto;
+  }
+  th, td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  button {
+    width: 100px;
+  }
+  

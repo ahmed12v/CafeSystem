@@ -1,38 +1,103 @@
 <nav class="navbar navbar-expand-lg cs-nav mt-0 overflow-auto">
-    <div class="container-fluid  m-0 position-relative ">
-      <a class="navbar-brand fs-2 ff cur " routerLink="home" >Al-Ittihad Cafe</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-        <div class=" navbar-nav ms-auto pages  ">
-          @if (inNav==false) {
-            <a class="nav-link text-black-50 fs-5 ps-3 pe-3 cur" aria-current="page" routerLink="home"routerLinkActive=" rounded-3 RLAC " >Home</a>
+  <div class="container-fluid m-0 position-relative">
+    <a class="navbar-brand fs-2 ff cur" routerLink="home">Al-Ittihad Cafe</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto pages">
+        @if (inNav==false) {
+        <a
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          aria-current="page"
+          routerLink="home"
+          routerLinkActive=" rounded-3 RLAC "
+          >Home</a
+        >
 
-          }
-          @else {
-            <a class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"  routerLink="employee" routerLinkActive=" rounded-3 RLAC "> Employe</a>
-            <a class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"  routerLink="drink" routerLinkActive=" rounded-3 RLAC "> Drinks</a>
-            <a class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"  routerLink="order" routerLinkActive=" rounded-3 RLAC "> order</a>
-            <a class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"  routerLink="bills" routerLinkActive=" rounded-3 RLAC "> Bills</a>
-          }
-          
-        </div>
-        <div class="navbar-nav ms-auto">
-          @if (inNav==false) {
-            <a class="nav-link text-black-50 fs-5 ps-3 pe-3 cur "  routerLink="login" routerLinkActive=" rounded-3 RLAC "> Login</a>
-            <a class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"   routerLink="signin" routerLinkActive=" rounded-3 RLAC "> Sign up</a>
-            
-          }
-          @else {
+        } @else {
+        <a
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          routerLink="employee"
+          routerLinkActive=" rounded-3 RLAC "
+        >
+          Employe</a
+        >
+        <a
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          routerLink="drink"
+          routerLinkActive=" rounded-3 RLAC "
+        >
+          Drinks</a
+        >
+        <a
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          routerLink="order"
+          routerLinkActive=" rounded-3 RLAC "
+        >
+          order</a
+        >
+        <a
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          routerLink="bills"
+          routerLinkActive=" rounded-3 RLAC "
+        >
+          Bills</a
+        >
+        <a
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          routerLink="orders"
+          routerLinkActive=" rounded-3 RLAC "
+        >
+          All Bills</a
+        >
 
-            <a  class="nav-link  cur fs-5 me-3  " routerLink="/getme"  routerLinkActive=" fs-3 fw-bold text-primary " > <i class="fa-solid fa-circle-user"></i></a>
+        }
+      </div>
+      <div class="navbar-nav ms-auto">
+        @if (inNav==false) {
+        <a
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          routerLink="login"
+          routerLinkActive=" rounded-3 RLAC "
+        >
+          Login</a
+        >
+        <a
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          routerLink="signin"
+          routerLinkActive=" rounded-3 RLAC "
+        >
+          Sign up</a
+        >
 
-            <a (click)="_LoginService.logout()" class="nav-link text-black-50 fs-5 ps-3 pe-3 cur log-hover rounded-3"  > log out <i class="fa-solid fa-person-through-window"></i></a>
-            
+        } @else {
 
-          }
-        </div>
+        <a
+          class="nav-link cur fs-5 me-3"
+          routerLink="/getme"
+          routerLinkActive=" fs-3 fw-bold text-primary "
+        >
+          <i class="fa-solid fa-circle-user"></i
+        ></a>
+
+        <a
+          (click)="_LoginService.logout()"
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur log-hover rounded-3"
+        >
+          log out <i class="fa-solid fa-person-through-window"></i
+        ></a>
+
+        }
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
