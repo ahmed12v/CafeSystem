@@ -1,103 +1,79 @@
-<nav class="navbar navbar-expand-lg cs-nav mt-0 overflow-auto">
-  <div class="container-fluid m-0 position-relative">
-    <a class="navbar-brand fs-2  cur" routerLink="home">El-ethaad Cafe</a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+  <div class="container">
+    <a class="navbar-brand fs-2 fw-bold  cur" routerLink="home">El-ethaad Cafe</a>
+
+    <div class="d-flex gap-3 align-items-center ">
+      
+      @if (inNav==false) {
+        
+        <div class="collapse navbar-collapse " id="navbarNav">
+          <ul class="navbar-nav gap-3 mx-auto ">
+            <li class="nav-item ">
+              <a class="nav-link active "  routerLink="home" routerLinkActive=" rounded-3 RLAC">Home</a>
+            </li>
+            <li class="nav-item  ">
+              <a class="nav-link active"  routerLink="login" routerLinkActive=" rounded-3 RLAC">Login</a>
+            </li>
+            <li class="nav-item  ">
+              <a class="nav-link active"  routerLink="signin" routerLinkActive=" rounded-3 RLAC">Sign up</a>
+            </li>
+          
+      </ul>
+    </div>
+      }
+
+    </div>
     <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+     class="navbar-toggler" 
+     type="button"
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" 
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav ms-auto pages">
-        @if (inNav==false) {
-        <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
-          aria-current="page"
-          routerLink="home"
-          routerLinkActive=" rounded-3 RLAC "
-          >Home</a
-        >
 
-        } @else {
-        <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
-          routerLink="employee"
-          routerLinkActive=" rounded-3 RLAC "
-        >
-          Employe</a
-        >
-        <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
-          routerLink="drink"
-          routerLinkActive=" rounded-3 RLAC "
-        >
-          Drinks</a
-        >
-        <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
-          routerLink="order"
-          routerLinkActive=" rounded-3 RLAC "
-        >
-          order</a
-        >
-        <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
-          routerLink="bills"
-          routerLinkActive=" rounded-3 RLAC "
-        >
-          Bills</a
-        >
-        <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
-          routerLink="orders"
-          routerLinkActive=" rounded-3 RLAC "
-        >
-          All Bills</a
-        >
+    @if( inNav == true){
 
-        }
+      <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav gap-4 mx-auto fs-5">
+          
+          <li class="nav-item">
+            <a class="nav-link active hover " routerLink="employee" routerLinkActive=" rounded-3 RLAC">Employee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active hover " routerLink="drink" routerLinkActive=" rounded-3 RLAC">Drinks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active hover " routerLink="order" routerLinkActive=" rounded-3 RLAC">Order</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active hover " routerLink="bills" routerLinkActive=" rounded-3 RLAC">Bill</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active hover " routerLink="orders" routerLinkActive=" rounded-3 RLAC">All Bill</a>
+          </li>
+        </ul>
       </div>
-      <div class=" d-flex justify-content-lg-end w-100 me-5">
-        @if (inNav==false) {
-        <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur "
-          routerLink="login"
-          routerLinkActive=" rounded-3 RLAC "
-        >
-          Login</a
-        >
-        <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur "
-          routerLink="signin"
-          routerLinkActive=" rounded-3 RLAC "
-        >
-          Sign up</a
-        >
 
-        } @else {
-
+    }
+   
+  
+    
+    @if (inNav==true) {
+      <div class="d-flex gap-3 align-items-center ps-2">
         <a
-          class="nav-link cur fs-5 me-3 "
+          class="nav-link cur fs-5 me-3 hover2 p-2"
           routerLink="/getme"
-          routerLinkActive=" fs-3 fw-bold text-primary "
+          routerLinkActive=" fs-4 fw-bold text-primary "
         >
           <i class="fa-solid fa-circle-user"></i
         ></a>
-
-        <a
-          (click)="_LoginService.logout()"
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur log-hover rounded-3 "
-        >
-          log out <i class="fa-solid fa-person-through-window"></i
-        ></a>
-
-        }
-      </div>
+      <a  (click)="_LoginService.logout()"
+       class="nav-link active cur hover3 p-2" aria-current="page" 
+        routerLinkActive=" ">logOut</a>
     </div>
+  }
+      
   </div>
 </nav>

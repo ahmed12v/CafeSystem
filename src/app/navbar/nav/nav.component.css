@@ -25,9 +25,11 @@
     display: inline-block;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+   
+    
 }
 
-/* Hover animation for links */
+/* Hover animation for links 
 .nav-link:hover {
     color: #fff !important;
     background-color: #1c0b89;
@@ -37,7 +39,7 @@
     transform: scale(1);
 }
 
-/* Additional hover underline animation */
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -54,11 +56,44 @@
     width: 100%;
 }
 
-/* Hover effect for logout */
+
 .log-hover:hover {
     border: 1px rgb(187, 0, 0) solid;
     background-color: rgb(187, 0, 0);
     color: rgb(255, 255, 255) !important;
     box-shadow: 0px 4px 15px rgba(187, 0, 0, 0.5);
     transform: translateY(-3px);
+} */
+
+.hover:hover{
+
+    border: 1px rgb(0, 0, 0) solid;
+    color: rgb(255, 255, 255) !important;
+    background-color: black;
+    
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
+    border-radius: 8px;
+
+}
+.hover2:hover{
+
+    border: 1px rgb(0, 70, 168) solid;
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(0, 70, 168);
+    
+    box-shadow: 0px 4px 15px rgba(0, 70, 168);
+    transform: translateY(-3px);
+    border-radius: 8px;
+ 
+}
+.hover3:hover{
+
+    border: 1px rgb(168, 0, 0) solid;
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(168, 0, 0);
+    
+    box-shadow: 0px 4px 15px rgba(168, 0, 0, 0.5);
+    transform: translateY(-3px);
+    border-radius: 8px;
 }
