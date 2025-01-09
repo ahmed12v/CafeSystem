@@ -3,7 +3,7 @@ import { EmployeService } from '../../servess/pages/employe.service';
 import { EmpData } from '../../interfaces/pages/emp';
 import { drinkRes } from '../../interfaces/drinks';
 import { DrinkService } from '../../servess/pages/drink.service';
-import { BillService } from '../../servess/pages/bill.service';
+import { BillService } from 'src/app/interfaces/athuntocation/signin';
 import {
   FormBuilder,
   FormControl,
@@ -28,6 +28,7 @@ export class MangOrderComponent implements OnInit {
   drinksForm: FormGroup;
   empList!: EmpData[];
   drinklist!: drinkRes[];
+  spiner: boolean = false;
 
   get drinks(): FormArray {
     return this.drinksForm.get('drinks') as FormArray;
@@ -83,20 +84,25 @@ export class MangOrderComponent implements OnInit {
 
   TakeOrder() {
     if (this.drinksForm.valid) {
+      this.spiner = true;
       this._BillService.TakeOrder(this.drinksForm.value).subscribe({
         next: (res) => {
           console.log(res);
+          this.spiner = false;
 
           // Trigger success toast
           const toast = new bootstrap.Toast(this.successToast.nativeElement);
           toast.show();
+
+          this.drinksForm.reset();
         },
         error: (err) => {
           console.log(err);
-        },
-        complete: () => {
-          console.log('Order completed!');
-        },
+          this.spiner = false;
+
+          this.drinksForm.reset();
+        }
+        
       });
     }
   }

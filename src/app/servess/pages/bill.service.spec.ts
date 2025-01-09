@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BillService } from './bill.service';
+import { BillService } from 'src/app/interfaces/athuntocation/signin';
 
 describe('BillService', () => {
   let service: BillService;

@@ -4,10 +4,14 @@ import { NavComponent } from "./navbar/nav/nav.component";
 import { FooterComponent } from "./pages/footer/footer.component";
 import { LoginService } from './servess/athuntocation/login.service';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, FooterComponent],
+  imports: [RouterOutlet, NavComponent, FooterComponent ],
+ 
+    // Other modules
+ 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

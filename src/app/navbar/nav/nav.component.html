@@ -62,17 +62,17 @@
 
         }
       </div>
-      <div class="navbar-nav ms-auto">
+      <div class=" d-flex justify-content-lg-end w-100 me-5">
         @if (inNav==false) {
         <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur "
           routerLink="login"
           routerLinkActive=" rounded-3 RLAC "
         >
           Login</a
         >
         <a
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur"
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur "
           routerLink="signin"
           routerLinkActive=" rounded-3 RLAC "
         >
@@ -82,7 +82,7 @@
         } @else {
 
         <a
-          class="nav-link cur fs-5 me-3"
+          class="nav-link cur fs-5 me-3 "
           routerLink="/getme"
           routerLinkActive=" fs-3 fw-bold text-primary "
         >
@@ -91,7 +91,7 @@
 
         <a
           (click)="_LoginService.logout()"
-          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur log-hover rounded-3"
+          class="nav-link text-black-50 fs-5 ps-3 pe-3 cur log-hover rounded-3 "
         >
           log out <i class="fa-solid fa-person-through-window"></i
         ></a>
