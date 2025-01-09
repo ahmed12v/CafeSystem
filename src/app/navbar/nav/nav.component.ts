@@ -29,4 +29,11 @@ this._LoginService.userdataInlogin.subscribe( ()=>{
 
   }
 
+  closeNavbar(): void {
+    const navbarCollapse = document.getElementById('navbarNav');
+    if (navbarCollapse) {
+      navbarCollapse.classList.remove('show');  
+    }
+  }
+
 }

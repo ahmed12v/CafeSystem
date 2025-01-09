@@ -9,13 +9,13 @@
         <div class="collapse navbar-collapse " id="navbarNav">
           <ul class="navbar-nav gap-3 mx-auto ">
             <li class="nav-item ">
-              <a class="nav-link active "  routerLink="home" routerLinkActive=" rounded-3 RLAC">Home</a>
+              <a class="nav-link active hover"  routerLink="home" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Home</a>
             </li>
             <li class="nav-item  ">
-              <a class="nav-link active"  routerLink="login" routerLinkActive=" rounded-3 RLAC">Login</a>
+              <a class="nav-link active hover"  routerLink="login" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Login</a>
             </li>
             <li class="nav-item  ">
-              <a class="nav-link active"  routerLink="signin" routerLinkActive=" rounded-3 RLAC">Sign up</a>
+              <a class="nav-link active hover"  routerLink="signin" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Sign up</a>
             </li>
           
       </ul>
@@ -39,19 +39,19 @@
         <ul class="navbar-nav gap-4 mx-auto fs-5">
           
           <li class="nav-item">
-            <a class="nav-link active hover " routerLink="employee" routerLinkActive=" rounded-3 RLAC">Employee</a>
+            <a class="nav-link active hover "  routerLink="employee" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Employee</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active hover " routerLink="drink" routerLinkActive=" rounded-3 RLAC">Drinks</a>
+            <a class="nav-link active hover " routerLink="drink" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Drinks</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active hover " routerLink="order" routerLinkActive=" rounded-3 RLAC">Order</a>
+            <a class="nav-link active hover " routerLink="order" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Order</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active hover " routerLink="bills" routerLinkActive=" rounded-3 RLAC">Bill</a>
+            <a class="nav-link active hover " routerLink="bills" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Bill</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active hover " routerLink="orders" routerLinkActive=" rounded-3 RLAC">All Bill</a>
+            <a class="nav-link active hover " routerLink="orders" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >All Bill</a>
           </li>
         </ul>
       </div>
@@ -66,12 +66,12 @@
           class="nav-link cur fs-5 me-3 hover2 p-2"
           routerLink="/getme"
           routerLinkActive=" fs-4 fw-bold text-primary "
-        >
+          (click)="closeNavbar()" >
           <i class="fa-solid fa-circle-user"></i
         ></a>
       <a  (click)="_LoginService.logout()"
        class="nav-link active cur hover3 p-2" aria-current="page" 
-        routerLinkActive=" ">logOut</a>
+        routerLinkActive=" " (click)="closeNavbar()" >logOut</a>
     </div>
   }
       
