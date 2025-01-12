@@ -10,27 +10,25 @@ import { BillService } from 'src/app/interfaces/athuntocation/signin';
 import { EmpData } from '../../interfaces/pages/emp';
 import { Order, respon } from '../../interfaces/pages/bill';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-
-
-
+import { BillServices } from 'src/app/servess/pages/bill.service';
 
 declare var bootstrap: any; // Ensure Bootstrap types are available
 
 @Component({
   selector: 'app-mangebills',
   standalone: true,
-  imports: [ReactiveFormsModule ], 
+  imports: [ReactiveFormsModule],
   templateUrl: './mangebills.component.html',
   styleUrls: ['./mangebills.component.css'],
 })
 export class MangebillsComponent implements OnInit {
   @ViewChild('successToast', { static: false }) successToast!: ElementRef;
-  
 
   constructor(
     private _EmployeService: EmployeService,
     private _BillService: BillService,
-    private  Toast: ToastrService
+    private billService: BillServices,
+    private Toast: ToastrService
   ) {}
 
   BillForm: FormGroup = new FormGroup({
@@ -46,7 +44,10 @@ export class MangebillsComponent implements OnInit {
   showtwo!: Order[];
   successMessage: string = '';
   errorMsg!: string;
-  dataComee!:any;
+  dataComee!: any;
+  startDate: string = '';
+  endDate: string = '';
+  orders: any[] = [];
 
   ngOnInit(): void {
     localStorage.setItem('last Page', '/bills');
@@ -54,21 +55,29 @@ export class MangebillsComponent implements OnInit {
 
   getBill() {
     if (this.BillForm.valid) {
+      const formData = {
+        ...this.BillForm.value,
+        startDate: this.formatDateToDDMMYYYY(this.BillForm.value.startDate),
+        endDate: this.formatDateToDDMMYYYY(this.BillForm.value.endDate),
+      };
       this.spiner = true;
-      this._BillService.getBill(this.BillForm.value).subscribe({
+      this._BillService.getBill(formData).subscribe({
         next: (res) => {
           this.spiner = false;
           this.come = true;
           this.showone = res;
           this.showtwo = res.orders;
+          this.startDate = this.BillForm.value.startDate;
+          this.endDate = this.BillForm.value.endDate;
         },
         error: (err) => {
           this.spiner = false;
           console.error(err);
-  
+
           // Set the error message or fallback to a default message
-          this.errorMsg = err.error?.msg || 'An unexpected error occurred. Please try again.';
-  
+          this.errorMsg =
+            err.error?.msg || 'An unexpected error occurred. Please try again.';
+
           // Display the error toast
           this.Toast.error(this.errorMsg, 'Error', {
             timeOut: 3000, // Toast will disappear after 3 seconds
@@ -79,32 +88,37 @@ export class MangebillsComponent implements OnInit {
       });
     } else {
       // If the form is invalid, show a warning toast
-      this.Toast.warning('Please fill in all required fields.', 'Validation Error', {
-        timeOut: 3000,
-        closeButton: true,
-        progressBar: true,
-      });
+      this.Toast.warning(
+        'Please fill in all required fields.',
+        'Validation Error',
+        {
+          timeOut: 3000,
+          closeButton: true,
+          progressBar: true,
+        }
+      );
     }
   }
-  
 
-  markAsPaid() {
-    const employeeName = this.BillForm.value.employeeName;
-    this._BillService.markBillAsPaid(employeeName).subscribe({
+  payBill(employeeName: string): void {
+    this.billService.markAsPaid(employeeName).subscribe({
       next: () => {
-        this.successMessage = 'The bill has been marked as paid successfully!';
         this.showone.orders[0].paid = true;
-
-        // Show the toast
+        this.Toast.success('The bill has been marked as paid successfully!');
+        // Update the UI
+        const order = this.orders.find((o) => o.employeeName === employeeName);
+        if (order) {
+          order.paid = true;
+        }
         const toast = new bootstrap.Toast(this.successToast.nativeElement);
         toast.show();
       },
       error: (err) => {
-        console.error('Error marking bill as paid:', err);
+        console.error(err);
+        this.Toast.error('Failed to mark the bill as paid. Please try again.');
       },
     });
   }
-
   getEmps() {
     this.dataComee = true;
     this._EmployeService.getAllEmp().subscribe({
@@ -118,5 +132,18 @@ export class MangebillsComponent implements OnInit {
         this.dataComee = false;
       },
     });
+  }
+
+  formatDateToDDMMYYYY(date: string): string {
+    const dateParts = date.split('-');
+    if (dateParts.length === 3) {
+      return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+    }
+    return date; // Return the same date if formatting fails
+  }
+
+  // Method to print the bill
+  printBill() {
+    window.print();
   }
 }

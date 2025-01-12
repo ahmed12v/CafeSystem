@@ -7,3 +7,39 @@ body{
     margin: 0%;
     padding: 0%;
 }
+
+@media print {
+    /* Hide navbar during printing */
+   .print-hide, .toast-container, .btn, .footer , .collapse , .nav-link , .print-btn , .pay-btn,button{
+      display: none !important;
+    }
+    .navbar.container:not(.print-logo){  
+      display: none !important;
+   
+      }
+  
+    /* Adjust layout for print */
+    .container {
+      max-width: 100%;
+      padding: 10px;
+      margin: 0;
+    }
+  
+    .table {
+      width: 100%;
+      font-size: 14px;
+    }
+  
+    .table th, .table td {
+      padding: 8px;
+    }
+  
+    /* Optional: Style adjustments for printing */
+    .bg-color, .bg-light {
+      background-color: white !important;
+    }
+  
+    .text-dark, .text-white {
+      color: black !important;
+    }
+  }

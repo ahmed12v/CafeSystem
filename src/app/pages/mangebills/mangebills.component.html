@@ -32,7 +32,7 @@
           formControlName="startDate"
           class="form-control"
           id="floatingInput"
-          placeholder=""
+          placeholder="dd/mm/yyyy"
         />
         <label for="floatingInput">Start Date</label>
         @if (BillForm.get('startDate')?.errors &&
@@ -54,7 +54,7 @@
           formControlName="endDate"
           class="form-control"
           id="floatingInput"
-          placeholder=""
+          placeholder="dd/mm/yyyy"
         />
         <label for="floatingInput">End Date</label>
         @if (BillForm.get('endDate')?.errors &&
@@ -83,11 +83,77 @@
     </form>
   </div>
 </section>
+} @if (come) {
+<section class="m-5">
+  <div class="container bg-light rounded-3 p-4 text-dark text-center">
+    <h1 class="bill-header fw-bold text-dark mb-3">
+      Bill For Mr. {{ showone.employee }}
+    </h1>
+    <h2 class="date-header fw text-dark mb-4">
+      Date: From {{ startDate }} To {{ endDate }}
+    </h2>
+
+    <!-- Bill Details Table -->
+    <div class="table-responsive mt-4">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Drink Name</th>
+            <th>Quantity</th>
+            <th>Price per Unit</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of showone.orders ; track order._id) { @for ( drink of
+          order.drinks ; track drink.drinkId ) {
+          <tr>
+            <td>{{ drink.drinkId.name }}</td>
+            <td>{{ drink.quantity }}</td>
+            <td>{{ drink.price }} EGP</td>
+            <td>{{ drink.quantity * drink.price }} EGP</td>
+          </tr>
+          } }
+        </tbody>
+      </table>
+    </div>
+    <!-- Total Bill Section -->
+    <div class="d-flex justify-content-end mt-4">
+      <div class="card text-bg-light col-12 col-md-6 p-3">
+        <h5 class="text-end mb-3">Total Bill</h5>
+        <div class="d-flex justify-content-between">
+          <span class="fw-bold">Total Amount:</span>
+          <span class="fw-bold text-success">{{ showone.totalBill }} EGP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pay Bill Button -->
+    @if (!showone.orders[0].paid) {
+    <button
+      class="btn btn-success pay-btn mt-4 mb-3 d-flex align-items-center justify-content-center"
+      [disabled]="showone.orders[0].paid"
+      [attr.title]="showone.orders[0].paid ? 'The bill is already paid' : ''"
+      (click)="payBill(showone.employee)"
+    >
+      <i class="fa fa-credit-card me-2"></i>
+      <!-- Payment Icon -->
+      Pay Bill
+    </button>
+    }
+    <button
+      class="btn btn-info print-btn mt-4 mb-3 d-flex align-items-center justify-content-center"
+      (click)="printBill()"
+    >
+      <i class="fa fa-print me-2"></i>
+      <!-- Print Icon -->
+      Print Bill
+    </button>
+  </div>
+</section>
 }
 
-
-
-@if (come) {
+<!-- @if (come) {
 <section class="m-5">
   <div class="container bg-color rounded-3 p-4 text-white text-center">
     <h1>
@@ -109,7 +175,7 @@
     }
   </div>
 </section>
-}
+} -->
 
 <!-- Toast Notification -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">

@@ -1,4 +1,17 @@
-import { Root } from './../../interfaces/pages/bill';
-import { HttpParams } from '@angular/common/http';
-import { observeOn } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
+@Injectable({
+  providedIn: 'root',
+})
+export class BillServices {
+  private baseUrl = 'https://ethaad-cafe.onrender.com/api/admin';
+
+  constructor(private http: HttpClient) {}
+
+  markAsPaid(employeeName: string): Observable<any> {
+    const body = { employeeName };
+    return this.http.put<any>(`${this.baseUrl}/pay`, body);
+  }
+}

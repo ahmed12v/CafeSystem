@@ -1,79 +1,128 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand fs-2 fw-bold  cur" routerLink="home">El-ethaad Cafe</a>
+    <a class="navbar-brand print-logo fs-2 fw-bold cur" routerLink="home"
+      >El-ethaad Cafe</a
+    >
 
-    <div class="d-flex gap-3 align-items-center ">
-      
+    <div class="d-flex gap-3 align-items-center">
       @if (inNav==false) {
-        
-        <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav gap-3 mx-auto ">
-            <li class="nav-item ">
-              <a class="nav-link active hover"  routerLink="home" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Home</a>
-            </li>
-            <li class="nav-item  ">
-              <a class="nav-link active hover"  routerLink="login" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Login</a>
-            </li>
-            <li class="nav-item  ">
-              <a class="nav-link active hover"  routerLink="signin" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Sign up</a>
-            </li>
-          
-      </ul>
-    </div>
-      }
 
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav gap-3 mx-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link active hover"
+              routerLink="home"
+              routerLinkActive=" rounded-3 RLAC"
+              (click)="closeNavbar()"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link active hover"
+              routerLink="login"
+              routerLinkActive=" rounded-3 RLAC"
+              (click)="closeNavbar()"
+              >Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link active hover"
+              routerLink="signin"
+              routerLinkActive=" rounded-3 RLAC"
+              (click)="closeNavbar()"
+              >Sign up</a
+            >
+          </li>
+        </ul>
+      </div>
+      }
     </div>
     <button
-     class="navbar-toggler" 
-     type="button"
-      data-bs-toggle="collapse" 
-      data-bs-target="#navbarNav" 
-      aria-controls="navbarNav" aria-expanded="false" 
-      aria-label="Toggle navigation">
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     @if( inNav == true){
 
-      <div class="collapse navbar-collapse " id="navbarNav">
-        <ul class="navbar-nav gap-4 mx-auto fs-5">
-          
-          <li class="nav-item">
-            <a class="nav-link active hover "  routerLink="employee" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Employee</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active hover " routerLink="drink" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Drinks</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active hover " routerLink="order" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Order</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active hover " routerLink="bills" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >Bill</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active hover " routerLink="orders" routerLinkActive=" rounded-3 RLAC" (click)="closeNavbar()" >All Bill</a>
-          </li>
-        </ul>
-      </div>
-
-    }
-   
-  
-    
-    @if (inNav==true) {
-      <div class="d-flex gap-3 align-items-center ps-2">
-        <a
-          class="nav-link cur fs-5 me-3 hover2 p-2"
-          routerLink="/getme"
-          routerLinkActive=" fs-4 fw-bold text-primary "
-          (click)="closeNavbar()" >
-          <i class="fa-solid fa-circle-user"></i
-        ></a>
-      <a  (click)="_LoginService.logout()"
-       class="nav-link active cur hover3 p-2" aria-current="page" 
-        routerLinkActive=" " (click)="closeNavbar()" >logOut</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav gap-4 mx-auto fs-5">
+        <li class="nav-item">
+          <a
+            class="nav-link active hover"
+            routerLink="employee"
+            routerLinkActive=" rounded-3 RLAC"
+            (click)="closeNavbar()"
+            >Employee</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active hover"
+            routerLink="drink"
+            routerLinkActive=" rounded-3 RLAC"
+            (click)="closeNavbar()"
+            >Drinks</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active hover"
+            routerLink="order"
+            routerLinkActive=" rounded-3 RLAC"
+            (click)="closeNavbar()"
+            >Order</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active hover"
+            routerLink="bills"
+            routerLinkActive=" rounded-3 RLAC"
+            (click)="closeNavbar()"
+            >Bill</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active hover"
+            routerLink="orders"
+            routerLinkActive=" rounded-3 RLAC"
+            (click)="closeNavbar()"
+            >All Bill</a
+          >
+        </li>
+      </ul>
     </div>
-  }
-      
+
+    } @if (inNav==true) {
+    <div class="d-flex print-hide gap-3 align-items-center ps-2">
+      <a
+        class="nav-link cur fs-5 me-3 hover2 p-2"
+        routerLink="/getme"
+        routerLinkActive=" fs-4 fw-bold text-primary "
+        (click)="closeNavbar()"
+      >
+        <i class="fa-solid fa-circle-user"></i
+      ></a>
+      <a
+        (click)="_LoginService.logout()"
+        class="nav-link active cur hover3 p-2"
+        aria-current="page"
+        routerLinkActive=" "
+        (click)="closeNavbar()"
+        >logOut</a
+      >
+    </div>
+    }
   </div>
 </nav>

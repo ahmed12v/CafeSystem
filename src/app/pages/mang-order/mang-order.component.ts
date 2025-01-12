@@ -84,8 +84,12 @@ export class MangOrderComponent implements OnInit {
 
   TakeOrder() {
     if (this.drinksForm.valid) {
+      const formData = {
+        ...this.drinksForm.value,
+        date: this.formatDateToDDMMYYYY(this.drinksForm.value.date),
+      };
       this.spiner = true;
-      this._BillService.TakeOrder(this.drinksForm.value).subscribe({
+      this._BillService.TakeOrder(formData).subscribe({
         next: (res) => {
           console.log(res);
           this.spiner = false;
@@ -101,13 +105,20 @@ export class MangOrderComponent implements OnInit {
           this.spiner = false;
 
           this.drinksForm.reset();
-        }
-        
+        },
       });
     }
   }
 
   removeDrinks(index: number) {
     this.drinks.removeAt(index);
+  }
+
+  formatDateToDDMMYYYY(date: string): string {
+    const dateParts = date.split('-');
+    if (dateParts.length === 3) {
+      return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+    }
+    return date; // Return the same date if formatting fails
   }
 }

@@ -11,3 +11,114 @@
 .toast-container {
     z-index: 1055; 
 }
+
+.pay-btn:disabled {
+  background-color: #c3c3c3;
+  cursor: not-allowed;
+}
+
+
+.print-btn {
+    background-color: #007bff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.bill-header {
+  font-size: 32px; /* Larger font size for main heading */
+  font-weight: 700; /* Bold text */
+  color: #343a40; /* Dark text color */
+  text-align: center; /* Center-align the heading */
+  letter-spacing: 1px; /* Slight letter-spacing for a clean look */
+  margin-bottom: 20px; /* Bottom margin for spacing */
+}
+
+.date-header {
+  font-size: 22px; /* Slightly smaller font size for the date section */
+  color: #6c757d; /* Lighter dark color for a subtle effect */
+  text-align: center; /* Center-align the date heading */
+  font-weight: 500; /* Medium weight */
+  letter-spacing: 0.5px; /* Slight letter-spacing */
+  margin-bottom: 30px; /* Adequate margin to separate from other content */
+}
+
+@media (max-width: 767px) {
+  .bill-header {
+    font-size: 28px; /* Adjust font size for smaller screens */
+  }
+  
+  .date-header {
+    font-size: 18px; /* Adjust font size for smaller screens */
+  }
+}  
+  .print-btn i {
+    font-size: 18px; /* Icon size */
+  }
+  
+  .print-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+  }
+  
+  .print-btn:active {
+    background-color: #004085; /* Even darker blue on click */
+    transform: scale(0.98); /* Slight shrink effect on click */
+  }
+  
+  .print-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(38, 143, 255, 0.5); /* Focus state */
+  }
+  
+  .print-btn i {
+    margin-right: 8px;
+  }    
+
+  .pay-btn {
+    background-color: #28a745; /* Green color for 'Pay' button */
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pay-btn i {
+    font-size: 18px; /* Icon size */
+  }
+  
+  .pay-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+  }
+  
+  .pay-btn:active {
+    background-color: #1e7e34; /* Even darker green on click */
+    transform: scale(0.98); /* Slight shrink effect on click */
+  }
+  
+  .pay-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(72, 211, 99, 0.5); /* Focus state */
+  }
+  
+  .pay-btn i {
+    margin-right: 8px;
+  }  
+
+  
+  
+  
