@@ -3,3 +3,88 @@
     background-color: #000000;
     font-family: serif;
 }
+/* Footer Styles */
+.footer {
+    background-color: #343a40; /* Dark background for the footer */
+    color: white; /* White text color */
+    padding: 40px 0; /* Vertical padding for spacing */
+  }
+  
+  .footer h5 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .footer p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .footer a {
+    color: white; /* White links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer a:hover {
+    color: #f39c12; /* Gold color on hover */
+  }
+  
+  .footer .row {
+    margin-bottom: 20px;
+  }
+  
+  .footer .footer-social a {
+    font-size: 20px;
+    margin: 0 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .footer .footer-social a:hover {
+    transform: scale(3.1); /* Social media icon hover effect */
+  }
+  
+  .footer .container {
+    max-width: 1140px;
+    margin: 0 auto; /* Center the footer content */
+  }
+  
+  .footer .footer-social {
+    margin-top: 20px;
+  }
+  
+  .footer .footer-social a {
+    color: white;
+    font-size: 25px;
+  }
+  
+  .footer .footer-social a:hover {
+    color: #f39c12; /* Hover effect for social icons */
+    transform: scale(1.1);
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 767px) {
+    .footer .row {
+      text-align: center;
+    }
+    .footer .container {
+      text-align: center;
+    }
+  
+    .footer .col-md-4 {
+      margin-bottom: 20px;
+    }
+  
+    .footer .footer-social {
+      margin-top: 15px;
+    }
+  }
+
+ .footer .developer-name {
+  font-weight: bold;
+  color: #00bfff;  /* Change the color to your preferred style */
+  font-style: inherit;
+} 
+  

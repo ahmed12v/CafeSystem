@@ -55,6 +55,6 @@ export const routes: Routes = [
   { path: 'Udata', component: UpdateUserdataComponent },
   { path: 'Upass', component: UpdateUserPasswordComponent },
   /////////////////////////////////////////////
-  { path: 'signin', component: SignInComponent },
+  // { path: 'signin', component: SignInComponent },
   { path: '**', component: NotFoundComponent },
 ];

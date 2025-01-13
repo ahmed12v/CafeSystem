@@ -1,0 +1,120 @@
+/* Body Styling */
+body {
+    background-color: #f8f9fa;
+  }
+  
+  /* Form Container */
+  .form-container {
+    max-width: 550px;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-floating .form-control {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+  
+  .form-floating label {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  /* Focus State for Input Fields */
+  .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+  }
+  
+  /* Error Tooltip Styling */
+  .error-tooltip {
+    position: absolute;
+    bottom: -28px;
+    left: 15px;
+    background-color: #ffe8e8;
+    color: #d9534f;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .error-tooltip:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #f8d7da transparent;
+  }
+  
+  /* Submit Button */
+  button:disabled {
+    background-color: #c3c3c3;
+    cursor: not-allowed;
+  }
+  
+  button span {
+    font-size: 1.1rem;
+  }
+  
+  /* Alert Styling */
+  .alert {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  
+  .alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    color: #842029;
+    border-radius: 10px;
+  }
+
+  .error-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #d9534f;
+    display: inline-block;
+    position: relative;
+  }
+
+  .error-icon:before,
+.error-icon:after {
+  content: '';
+  position: absolute;
+  background-color: white;
+  width: 2px;
+  height: 8px;
+  left: 7px;
+  top: 3px;
+}
+
+.error-icon:before {
+  transform: rotate(45deg);
+}
+
+.error-icon:after {
+  transform: rotate(-45deg);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  

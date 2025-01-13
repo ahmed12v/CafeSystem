@@ -1,3 +1,60 @@
-.bg-custom-gray-700{
-    background-color: rgb(92 105 124);
-}
+/* Spinner Styles */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.4rem;
+  }
+  
+  /* Profile Section */
+  .profile-section {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  /* Card Styles */
+  .card {
+    border: none;
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  /* Profile Icon */
+  .profile-icon {
+    font-size: 2.5rem;
+    background-color: #007bff;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  /* Detail Styles */
+  .profile-details .detail-item h6 {
+    margin-bottom: 0.3rem;
+    font-size: 0.875rem;
+    color: #6c757d;
+  }
+  
+  .profile-details .detail-item p {
+    margin-bottom: 0;
+  }
+  
+  /* Update Links */
+  .update-links .btn {
+    font-size: 0.875rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .update-links .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .update-links .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  

@@ -118,6 +118,37 @@
   .pay-btn i {
     margin-right: 8px;
   }  
+/* Tooltip error style */
+.error-tooltip {
+  display: flex;
+  align-items: center;
+  color: #d9534f; /* Red color for errors */
+  font-size: 0.875rem;
+  background-color: #f8d7da; /* Light red background */
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 0.25rem;
+}
+
+.error-tooltip i {
+  font-size: 1.25rem; /* Larger icon */
+  color: #d9534f;
+}
+
+/* Optional: Adding a border on input when there's an error */
+.form-control.ng-touched.ng-invalid {
+  border-color: #d9534f;
+  background-color: #f8d7da;
+}
+
+.form-floating .form-control {
+  border-radius: 5px;
+  padding-left: 0.75rem;
+}
+
+.form-floating .form-control:focus {
+  border-color: #d9534f; /* Error focus border color */
+}
 
   
   

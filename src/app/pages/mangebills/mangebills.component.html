@@ -13,15 +13,15 @@
           placeholder=""
         />
         <label for="floatingInput">Employee Name</label>
+
+        <!-- Error Tooltip -->
         @if (BillForm.get('employeeName')?.errors &&
-        BillForm.get('employeeName')?.touched) {
-        <div class="alert alert-danger text-start text-black">
-          @if (BillForm.get('employeeName')?.errors?.['required']) {
-          <p class="p-1 m-0 ps-2">
+        BillForm.get('employeeName')?.touched){
+        <div>
+          <div class="error-tooltip">
+            <i class="fa-solid fa-circle-exclamation me-2"></i>
             Employee Name is required
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </p>
-          }
+          </div>
         </div>
         }
       </div>
