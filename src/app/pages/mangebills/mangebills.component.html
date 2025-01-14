@@ -1,4 +1,4 @@
-@if (come == false) {
+@if (!come) {
 <section class="text-center">
   <div class="container w-50 mt-4 rounded-3 shadow-lg p-3 bg-color">
     <form [formGroup]="BillForm" (submit)="getBill()">
@@ -83,14 +83,14 @@
     </form>
   </div>
 </section>
-} @if (come) {
+} @else {
 <section class="m-5">
   <div class="container bg-light rounded-3 p-4 text-dark text-center">
     <h1 class="bill-header fw-bold text-dark mb-3">
-      Bill For Mr. {{ showone.employee }}
+      Bill For Mr. {{ employeeName }}
     </h1>
     <h2 class="date-header fw text-dark mb-4">
-      Date: From {{ startDate }} To {{ endDate }}
+      Date: From {{ BillForm.value.startDate }} To {{ BillForm.value.endDate }}
     </h2>
 
     <!-- Bill Details Table -->
@@ -105,15 +105,14 @@
           </tr>
         </thead>
         <tbody>
-          @for (order of showone.orders ; track order._id) { @for ( drink of
-          order.drinks ; track drink.drinkId ) {
+          @for (drink of showOrders ; track $index) {
           <tr>
             <td>{{ drink.drinkId.name }}</td>
             <td>{{ drink.quantity }}</td>
             <td>{{ drink.price }} EGP</td>
             <td>{{ drink.quantity * drink.price }} EGP</td>
           </tr>
-          } }
+          }
         </tbody>
       </table>
     </div>
@@ -123,21 +122,20 @@
         <h5 class="text-end mb-3">Total Bill</h5>
         <div class="d-flex justify-content-between">
           <span class="fw-bold">Total Amount:</span>
-          <span class="fw-bold text-success">{{ showone.totalBill }} EGP</span>
+          <span class="fw-bold text-success">{{ totalBills }} EGP</span>
         </div>
       </div>
     </div>
 
     <!-- Pay Bill Button -->
-    @if (!showone.orders[0].paid) {
+    @if (!showOrders[0].paid) {
     <button
       class="btn btn-success pay-btn mt-4 mb-3 d-flex align-items-center justify-content-center"
-      [disabled]="showone.orders[0].paid"
-      [attr.title]="showone.orders[0].paid ? 'The bill is already paid' : ''"
-      (click)="payBill(showone.employee)"
+      [disabled]="showOrders[0].paid"
+      [attr.title]="showOrders[0].paid ? 'The bill is already paid' : ''"
+      (click)="payBill(employeeName)"
     >
       <i class="fa fa-credit-card me-2"></i>
-      <!-- Payment Icon -->
       Pay Bill
     </button>
     }

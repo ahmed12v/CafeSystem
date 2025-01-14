@@ -8,9 +8,9 @@ import {
 import { EmployeService } from '../../servess/pages/employe.service';
 import { BillService } from 'src/app/interfaces/athuntocation/signin';
 import { EmpData } from '../../interfaces/pages/emp';
-import { Order, respon } from '../../interfaces/pages/bill';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { BillServices } from 'src/app/servess/pages/bill.service';
+import { catchError, EMPTY, finalize, map } from 'rxjs';
 
 declare var bootstrap: any; // Ensure Bootstrap types are available
 
@@ -40,8 +40,9 @@ export class MangebillsComponent implements OnInit {
   empList!: EmpData[];
   spiner: boolean = false;
   come: boolean = false;
-  showone!: respon;
-  showtwo!: Order[];
+  showOrders: any = [];
+  totalBills: any;
+  employeeName: any;
   successMessage: string = '';
   errorMsg!: string;
   dataComee!: any;
@@ -61,31 +62,47 @@ export class MangebillsComponent implements OnInit {
         endDate: this.formatDateToDDMMYYYY(this.BillForm.value.endDate),
       };
       this.spiner = true;
-      this._BillService.getBill(formData).subscribe({
-        next: (res) => {
-          this.spiner = false;
-          this.come = true;
-          this.showone = res;
-          this.showtwo = res.orders;
-          this.startDate = this.BillForm.value.startDate;
-          this.endDate = this.BillForm.value.endDate;
-        },
-        error: (err) => {
-          this.spiner = false;
-          console.error(err);
-
-          // Set the error message or fallback to a default message
-          this.errorMsg =
-            err.error?.msg || 'An unexpected error occurred. Please try again.';
-
-          // Display the error toast
-          this.Toast.error(this.errorMsg, 'Error', {
-            timeOut: 3000, // Toast will disappear after 3 seconds
-            closeButton: true, // Add a close button to the toast
-            progressBar: true, // Show a progress bar on the toast
-          });
-        },
-      });
+      this._BillService
+        .getBill(formData)
+        .pipe(
+          map((res: any) => {
+            this.totalBills = res.totalBill;
+            this.employeeName = res.employee;
+            const flatOrders = res.orders
+              .map((drink: any) => drink.drinks)
+              .flat()
+              .reduce((acc: any, item: any) => {
+                const key = `${item.drinkId._id}-${item.price}`;
+                if (!acc[key]) {
+                  acc[key] = { ...item };
+                } else {
+                  acc[key].quantity += item.quantity;
+                }
+                return acc;
+              }, {});
+            return Object.values(flatOrders);
+          }),
+          finalize(() => {
+            this.spiner = false;
+          }),
+          catchError((err) => {
+            this.errorMsg =
+              err.error?.msg ||
+              'An unexpected error occurred. Please try again.';
+            this.Toast.error(this.errorMsg, 'Error', {
+              timeOut: 3000, // Toast will disappear after 3 seconds
+              closeButton: true, // Add a close button to the toast
+              progressBar: true, // Show a progress bar on the toast
+            });
+            return EMPTY;
+          })
+        )
+        .subscribe({
+          next: (res) => {
+            this.come = true;
+            this.showOrders = res;
+          },
+        });
     } else {
       // If the form is invalid, show a warning toast
       this.Toast.warning(
@@ -103,18 +120,10 @@ export class MangebillsComponent implements OnInit {
   payBill(employeeName: string): void {
     this.billService.markAsPaid(employeeName).subscribe({
       next: () => {
-        this.showone.orders[0].paid = true;
+        this.showOrders[0].paid = true;
         this.Toast.success('The bill has been marked as paid successfully!');
-        // Update the UI
-        const order = this.orders.find((o) => o.employeeName === employeeName);
-        if (order) {
-          order.paid = true;
-        }
-        const toast = new bootstrap.Toast(this.successToast.nativeElement);
-        toast.show();
       },
       error: (err) => {
-        console.error(err);
         this.Toast.error('Failed to mark the bill as paid. Please try again.');
       },
     });

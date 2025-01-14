@@ -137,8 +137,8 @@
 
 /* Optional: Adding a border on input when there's an error */
 .form-control.ng-touched.ng-invalid {
-  border-color: #d9534f;
-  background-color: #f8d7da;
+  border:2px solid #d9534f;
+
 }
 
 .form-floating .form-control {

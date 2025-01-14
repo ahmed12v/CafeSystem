@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Emp, EmpData } from '../../interfaces/pages/emp';
 import { EmployeService } from '../../servess/pages/employe.service';
 import { RouterLink } from '@angular/router';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-mang-emp',
@@ -11,14 +13,23 @@ import { RouterLink } from '@angular/router';
   // styleUrl: './mang-emp.component.css'
 })
 export class MangEmpComponent implements OnInit {
+  @ViewChild('successToast', { static: false }) successToast!: ElementRef; // Toast element reference
+  @ViewChild('errorToast', { static: false }) errorToast!: ElementRef; // Error toast reference
+
+  empList!: EmpData[];
+  dataCome: boolean = false;
+  empToDelete: string | null = null; // Track which employee to delete
+  modalInstance: any;
+  spinner: boolean = false;
+
+  ////////////////////////////constractour///////////////////////
+  constructor(private _EmployeService: EmployeService) {}
   ngOnInit(): void {
     if (typeof localStorage != 'undefined')
       localStorage.setItem('last Page', '/employee');
     ////////////////////////////call//////////////////////////
     this.getEmps();
   }
-  ////////////////////////////constractour///////////////////////
-  constructor(private _EmployeService: EmployeService) {}
   ////////////////////// get emp////////////////////////////////
   getEmps() {
     this.dataCome = true;
@@ -34,20 +45,32 @@ export class MangEmpComponent implements OnInit {
       },
     });
   }
-  //////////////////////////////////////////////////////////////////////////////////
-  empList!: EmpData[];
-  dataCome: boolean = false;
-  //////////////////////////////////////////////////////////////////////////////////
-
-  deletemp(empid: string) {
-    this._EmployeService.deletupdatEmp(empid).subscribe({
-      next: (res) => {
-        this.getEmps();
-        //    console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  confirmDelete(empId: string) {
+    this.empToDelete = empId;
+    const modalElement = document.getElementById('confirmDeleteModal');
+    this.modalInstance = new bootstrap.Modal(modalElement);
+    this.modalInstance.show();
+  }
+  deleteEmp() {
+    this.spinner = true;
+    if (this.empToDelete) {
+      this._EmployeService.deletupdatEmp(this.empToDelete).subscribe({
+        next: () => {
+          this.modalInstance.hide();
+          this.getEmps();
+          // Show success toast
+          const toast = new bootstrap.Toast(this.successToast.nativeElement);
+          toast.show();
+          this.spinner = false;
+        },
+        error: () => {
+          this.modalInstance.hide();
+          // Show error toast
+          const toast = new bootstrap.Toast(this.errorToast.nativeElement);
+          toast.show();
+          this.spinner = false;
+        },
+      });
+    }
   }
 }
