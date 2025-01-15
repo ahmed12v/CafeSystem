@@ -17,8 +17,17 @@
   cursor: not-allowed;
 }
 
-
-.print-btn {
+@media (min-width: 768px) {
+  .billCard{
+    margin: auto;
+    width: 50% !important;
+  }}
+@media (max-width: 580px) {
+  .billCard{
+    margin: 1.5rem 1rem !important;
+    width: auto  !important;
+  }}
+  .print-btn {
     background-color: #007bff;
     border: none;
     padding: 12px 20px;
