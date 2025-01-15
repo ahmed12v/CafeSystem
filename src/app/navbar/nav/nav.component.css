@@ -12,6 +12,9 @@
     left: 5%;
 }
 
+.logo-img{
+    width: 11rem;
+}
 
 
 .RLAC {
@@ -28,7 +31,8 @@
    
     
 }
-
+    
+  
 /* Hover animation for links 
 .nav-link:hover {
     color: #fff !important;

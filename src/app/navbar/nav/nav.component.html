@@ -1,9 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand print-logo fs-2 fw-bold cur" routerLink="home"
-      >El-ethaad Cafe</a
-    >
-
+    <a class="navbar-brand print-logo cur" routerLink="home">
+      <img
+        src="/assets/imge/el-ethaad-high-resolution-logo-removebg.png"
+        alt="El-ethaad Cafe"
+        class="logo-img"
+      />
+    </a>
     <div class="d-flex gap-3 align-items-center">
       @if (inNav==false) {
 
@@ -55,7 +58,7 @@
     @if( inNav == true){
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav gap-4 mx-auto fs-5">
+      <ul class="navbar-nav gap-3 mx-auto fs-5">
         <li class="nav-item">
           <a
             class="nav-link active hover"
@@ -101,28 +104,29 @@
             >All Bill</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            (click)="_LoginService.logout()"
+            class="nav-link active cur hover3"
+            aria-current="page"
+            routerLinkActive=" "
+            (click)="closeNavbar()"
+            >log out</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link cur fs-5 me-3 hover2"
+            routerLink="/getme"
+            routerLinkActive=" fs-4 fw-bold text-primary "
+            (click)="closeNavbar()"
+          >
+            <i class="fa-solid fa-circle-user"></i
+          ></a>
+        </li>
       </ul>
     </div>
 
-    } @if (inNav==true) {
-    <div class="d-flex print-hide gap-3 align-items-center ps-2">
-      <a
-        class="nav-link cur fs-5 me-3 hover2 p-2"
-        routerLink="/getme"
-        routerLinkActive=" fs-4 fw-bold text-primary "
-        (click)="closeNavbar()"
-      >
-        <i class="fa-solid fa-circle-user"></i
-      ></a>
-      <a
-        (click)="_LoginService.logout()"
-        class="nav-link active cur hover3 p-2"
-        aria-current="page"
-        routerLinkActive=" "
-        (click)="closeNavbar()"
-        >logOut</a
-      >
-    </div>
     }
   </div>
 </nav>
