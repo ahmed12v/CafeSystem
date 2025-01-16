@@ -106,23 +106,26 @@
         </li>
         <li class="nav-item">
           <a
-            (click)="_LoginService.logout()"
-            class="nav-link active cur hover3"
-            aria-current="page"
-            routerLinkActive=" "
+            class="nav-link cur fs-5 me-3 hover2 getme-link d-flex align-items-center"
+            routerLink="/getme"
+            routerLinkActive="fs-4 fw-bold text-primary"
             (click)="closeNavbar()"
-            >log out</a
           >
+            <i class="fa-solid fa-circle-user me-2 getme-icon"></i>
+            <span class="getme-text">My Profile</span>
+          </a>
         </li>
         <li class="nav-item">
           <a
-            class="nav-link cur fs-5 me-3 hover2"
-            routerLink="/getme"
-            routerLinkActive=" fs-4 fw-bold text-primary "
+            (click)="_LoginService.logout()"
+            class="nav-link cur fs-5 me-3 hover3 logout-link d-flex align-items-center"
+            aria-current="page"
+            routerLinkActive=" "
             (click)="closeNavbar()"
           >
-            <i class="fa-solid fa-circle-user"></i
-          ></a>
+            <i class="fa-solid fa-right-from-bracket me-2 logout-icon"></i>
+            <span class="logout-text">Log Out</span>
+          </a>
         </li>
       </ul>
     </div>

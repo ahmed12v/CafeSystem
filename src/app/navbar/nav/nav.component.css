@@ -31,6 +31,106 @@
    
     
 }
+
+/* Styling for the GetMe Link */
+.getme-link {
+    color: #6c757d; /* Neutral gray */
+    transition: all 0.3s ease;
+  }
+  
+  .getme-link:hover {
+    color: #007bff; /* Highlight color on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  /* Icon Styling */
+  .getme-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .getme-link:hover .getme-icon {
+    color: #007bff;
+    transform: rotate(360deg); /* Smooth spin on hover */
+  }
+  
+  /* Text Styling */
+  .getme-text {
+    font-size: 1rem;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  
+  .getme-link:hover .getme-text {
+    opacity: 1;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .getme-link {
+      font-size: 1rem;
+    }
+  
+    .getme-icon {
+      font-size: 1.3rem;
+    }
+  
+    .getme-text {
+      font-size: 0.9rem;
+    }
+  }
+/* Styling for the Logout Link */
+.logout-link {
+  color: #6c757d; /* Neutral gray */
+  transition: all 0.3s ease;
+}
+
+.logout-link:hover {
+  color: #dc3545; /* Highlight red for logout */
+  transform: scale(1.1); /* Slight zoom effect */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Icon Styling */
+.logout-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.logout-link:hover .logout-icon {
+  color: #dc3545;
+  transform: translateX(-5px) rotate(-20deg); /* Slide and rotate on hover */
+}
+
+/* Text Styling */
+.logout-text {
+  font-size: 1rem;
+  font-weight: bold;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.logout-link:hover .logout-text {
+  opacity: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .logout-link {
+    font-size: 1rem;
+  }
+
+  .logout-icon {
+    font-size: 1.3rem;
+  }
+
+  .logout-text {
+    font-size: 0.9rem;
+  }
+}
+  
     
   
 /* Hover animation for links 
