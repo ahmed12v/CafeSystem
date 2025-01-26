@@ -133,10 +133,10 @@
       class="btn btn-success pay-btn mt-4 mb-3 d-flex align-items-center justify-content-center"
       [disabled]="showOrders[0].paid"
       [attr.title]="showOrders[0].paid ? 'The bill is already paid' : ''"
-      (click)="payBill(employeeName)"
+      (click)="payPartialBill()"
     >
       <i class="fa fa-credit-card me-2"></i>
-      Pay Bill
+      Partial Pay
     </button>
     }
     <button

@@ -25,10 +25,13 @@ export class MangEmpComponent implements OnInit {
   ////////////////////////////constractour///////////////////////
   constructor(private _EmployeService: EmployeService) {}
   ngOnInit(): void {
-    if (typeof localStorage != 'undefined')
+    if (typeof localStorage != 'undefined') {
       localStorage.setItem('last Page', '/employee');
-    ////////////////////////////call//////////////////////////
-    this.getEmps();
+      ////////////////////////////call//////////////////////////
+      this.getEmps();
+    } else {
+      console.warn('localStorage is not available in this environment.');
+    }
   }
   ////////////////////// get emp////////////////////////////////
   getEmps() {

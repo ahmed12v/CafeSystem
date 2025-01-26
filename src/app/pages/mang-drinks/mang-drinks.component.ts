@@ -13,11 +13,14 @@ import { RouterLink } from '@angular/router';
 })
 export class MangDrinksComponent implements OnInit {
   ngOnInit(): void {
-    if (typeof localStorage != 'undefined')
+    if (typeof localStorage != 'undefined') {
       localStorage.setItem('last Page', '/drink');
 
-    /////////////////// call ////////////////
-    this.getDrinks();
+      /////////////////// call ////////////////
+      this.getDrinks();
+    } else {
+      console.warn('localStorage is not available in this environment.');
+    }
   }
   ////////////////////////////constr...////////////
   constructor(private _DrinkService: DrinkService) {}

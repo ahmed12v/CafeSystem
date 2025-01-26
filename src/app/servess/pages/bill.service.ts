@@ -14,4 +14,13 @@ export class BillServices {
     const body = { employeeName };
     return this.http.put<any>(`${this.baseUrl}/pay`, body);
   }
+
+  partialPayment(
+    employeeName: string,
+    startDate: Date,
+    endDate: Date
+  ): Observable<any> {
+    const body = { employeeName, startDate, endDate };
+    return this.http.put<any>(`${this.baseUrl}/partial-pay`, body);
+  }
 }

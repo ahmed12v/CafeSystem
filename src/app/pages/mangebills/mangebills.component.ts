@@ -51,7 +51,11 @@ export class MangebillsComponent implements OnInit {
   orders: any[] = [];
 
   ngOnInit(): void {
-    localStorage.setItem('last Page', '/bills');
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('last Page', '/bills');
+    } else {
+      console.warn('localStorage is not available in this environment.');
+    }
   }
 
   getBill() {
@@ -117,17 +121,45 @@ export class MangebillsComponent implements OnInit {
     }
   }
 
-  payBill(employeeName: string): void {
-    this.billService.markAsPaid(employeeName).subscribe({
-      next: () => {
-        this.showOrders[0].paid = true;
-        this.Toast.success('The bill has been marked as paid successfully!');
-      },
-      error: (err) => {
-        this.Toast.error('Failed to mark the bill as paid. Please try again.');
-      },
-    });
+  payPartialBill() {
+    if (this.BillForm.valid) {
+      const formData = {
+        employeeName: this.BillForm.value.employeeName,
+        startDate: new Date(this.BillForm.value.startDate),
+        endDate: new Date(this.BillForm.value.endDate),
+      };
+      this.spiner = true;
+      this.billService
+        .partialPayment(
+          formData.employeeName,
+          formData.startDate,
+          formData.endDate
+        )
+        .pipe(
+          finalize(() => {
+            this.spiner = false;
+          }),
+          catchError((err) => {
+            this.Toast.error(
+              err.error?.msg || 'Partial payment failed. Please try again.',
+              'Error',
+              { timeOut: 3000, closeButton: true, progressBar: true }
+            );
+            return EMPTY;
+          })
+        )
+        .subscribe({
+          next: (res) => {
+            this.Toast.success(
+              `Partial payment for ${formData.employeeName} was successful!`,
+              'Success',
+              { timeOut: 3000, closeButton: true, progressBar: true }
+            );
+          },
+        });
+    }
   }
+
   getEmps() {
     this.dataComee = true;
     this._EmployeService.getAllEmp().subscribe({
