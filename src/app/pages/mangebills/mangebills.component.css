@@ -107,6 +107,7 @@
   }
   
   .pay-btn i {
+    height: max-content;
     font-size: 18px; /* Icon size */
   }
   

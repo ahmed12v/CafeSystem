@@ -50,6 +50,18 @@ export class MangebillsComponent implements OnInit {
   endDate: string = '';
   orders: any[] = [];
   paymentSuccessful: boolean = false;
+  generatedTime: string = new Date()
+    .toLocaleString('en-US', {
+      weekday: 'short', // "Wed"
+      year: 'numeric', // "2025"
+      month: 'short', // "Jan"
+      day: '2-digit', // "29"
+      hour: '2-digit', // "16"
+      minute: '2-digit', // "37"
+      second: '2-digit', // "25"
+      hour12: false, // 24-hour format
+    })
+    .replace(',', '');
 
   ngOnInit(): void {
     if (typeof localStorage !== 'undefined') {
