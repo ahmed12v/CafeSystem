@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DrinkService } from '../../servess/pages/drink.service';
 
@@ -8,60 +13,67 @@ import { DrinkService } from '../../servess/pages/drink.service';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './updat-drink.component.html',
-  styleUrl: './updat-drink.component.css'
+  styleUrl: './updat-drink.component.css',
 })
 export class UpdatDrinkComponent {
+  spiner: boolean = false;
+  errmsg!: string;
+  constructor(
+    private _DrinkService: DrinkService,
+    private _Router: Router,
+    private _ActivatedRoute: ActivatedRoute
+  ) {}
 
-  constructor(private _DrinkService:DrinkService , private _Router:Router,private _ActivatedRoute:ActivatedRoute){}
+  updatdrinkForm: FormGroup = new FormGroup({
+    price: new FormControl(null),
+    unionPrice: new FormControl(null),
+    dentistryPrice: new FormControl(null),
+  });
 
-  updatdrinkForm: FormGroup =new FormGroup({
-   
-    price: new FormControl(null, Validators.required ),
-   
-  } )
-
-
-  
-  submitupdate(){
-
-    let id :string='';
+  submitupdate() {
+    let id: string = '';
     this._ActivatedRoute.params.subscribe({
-      next:res=>{
-       // console.log(res['id']);
-        id=res['id'];
-        
+      next: (res) => {
+        id = res['id'];
+      },
+    });
+
+    if (this.updatdrinkForm.valid) {
+      this.spiner = true;
+
+      // Prepare the request body by filtering out undefined or null fields
+      const updatedDrink: any = {};
+      if (
+        this.updatdrinkForm.get('price')?.value !== null &&
+        this.updatdrinkForm.get('price')?.value !== undefined
+      ) {
+        updatedDrink.price = this.updatdrinkForm.get('price')?.value;
       }
-    })
+      if (
+        this.updatdrinkForm.get('unionPrice')?.value !== null &&
+        this.updatdrinkForm.get('unionPrice')?.value !== undefined
+      ) {
+        updatedDrink.unionPrice = this.updatdrinkForm.get('unionPrice')?.value;
+      }
+      if (
+        this.updatdrinkForm.get('dentistryPrice')?.value !== null &&
+        this.updatdrinkForm.get('dentistryPrice')?.value !== undefined
+      ) {
+        updatedDrink.dentistryPrice =
+          this.updatdrinkForm.get('dentistryPrice')?.value;
+      }
 
-    if( this.updatdrinkForm.valid){
-      
-      this.spiner=true;
-
-      this._DrinkService.updatdrink(this.updatdrinkForm.value,id).subscribe({
-
-        next:res=>{
-
-       //  console.log(res)
-          this.spiner=false;
-          this._Router.navigate(['/drink'])
+      // Send the request to update the drink
+      this._DrinkService.updatdrink(updatedDrink, id).subscribe({
+        next: (res) => {
+          this.spiner = false;
+          this._Router.navigate(['/drink']);
         },
-        error:err=>{
-       console.log(err);
-          this.spiner=false;
-        // this.errmsg=err.message;
-          
-          
-
-
-          
-        }
-      })
+        error: (err) => {
+          console.log(err);
+          this.spiner = false;
+        },
+      });
     }
-    
   }
-  //////////////////// condtions  ////////////////////////
-     
-    spiner:boolean=false;
-    errmsg !:string;
-
 }

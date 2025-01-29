@@ -1,11 +1,13 @@
 <section class="text-center">
-  <div class="container w-50 mt-4 rounded-3 shadow-lg bg-white p-5">
+  <div
+    class="container-lg w-100 w-md-50 mt-4 rounded-4 shadow-lg bg-white p-4 p-md-5"
+  >
     <form [formGroup]="updatdrinkForm" (ngSubmit)="submitupdate()">
-      <h1 class="text-black fw-bold mb-5">Update Drink</h1>
+      <h1 class="text-black fw-bold mb-4 mb-md-5">Update Drink</h1>
 
       <!-- Error Message Alert -->
       @if (errmsg) {
-      <div class="alert alert-danger text-center mb-4">
+      <div class="alert alert-danger text-center mb-4 p-3 rounded-3">
         <span class="error-icon me-2"></span> 404 - Error occurred
       </div>
       }
@@ -15,11 +17,11 @@
         <input
           type="text"
           formControlName="price"
-          class="form-control"
+          class="form-control rounded-3"
           id="priceInput"
           placeholder="Enter price"
         />
-        <label for="priceInput">Price</label>
+        <label for="priceInput" class="text-muted">Price</label>
         @if (updatdrinkForm.get('price')?.errors &&
         updatdrinkForm.get('price')?.touched) {
         <div class="error-tooltip">
@@ -28,10 +30,46 @@
         }
       </div>
 
+      <!-- Union Price Input (Optional) -->
+      <div class="form-floating mb-4 position-relative">
+        <input
+          type="text"
+          formControlName="unionPrice"
+          class="form-control rounded-3"
+          id="unionPriceInput"
+          placeholder="Enter union price (optional)"
+        />
+        <label for="unionPriceInput" class="text-muted">Union Price</label>
+        @if (updatdrinkForm.get('unionPrice')?.errors &&
+        updatdrinkForm.get('unionPrice')?.touched) {
+        <div class="error-tooltip">
+          <span class="error-icon"></span> Invalid union price
+        </div>
+        }
+      </div>
+
+      <!-- Dentistry Price Input (Optional) -->
+      <div class="form-floating mb-4 position-relative">
+        <input
+          type="text"
+          formControlName="dentistryPrice"
+          class="form-control rounded-3"
+          id="dentPriceInput"
+          placeholder="Enter dentistry price (optional)"
+        />
+        <label for="dentPriceInput" class="text-muted">Dentistry Price</label>
+        @if (updatdrinkForm.get('dentistryPrice')?.errors &&
+        updatdrinkForm.get('dentistryPrice')?.touched) {
+        <div class="error-tooltip">
+          <span class="error-icon"></span> Invalid dentistry price
+        </div>
+        }
+      </div>
+
       <!-- Submit Button -->
       <button
         [disabled]="updatdrinkForm.invalid"
-        class="btn btn-primary btn-lg fs-6 px-5 py-2 mt-3"
+        class="btn btn-primary btn-lg fs-6 px-5 py-2 mt-3 rounded-pill"
       >
         @if (spiner) {
         <i class="fa fa-spinner fa-spin me-2"></i> Updating... } @else { Update

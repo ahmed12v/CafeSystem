@@ -1,14 +1,14 @@
 <section class="text-center">
-  <div class="container w-50 mt-4 rounded-3 shadow-lg bg-white p-5">
+  <div class="container form-container bg-white p-4 p-md-5 rounded-3 shadow-lg">
     <form [formGroup]="adddrinkForm" (ngSubmit)="submitadd()">
-      <h1 class="text-black fw-bold mb-5">Add New Drink</h1>
+      <h1 class="text-black fw-bold mb-4">Add New Drink</h1>
 
       <!-- Error Message Alert -->
       @if (errmsg) {
       <div class="alert alert-danger text-center mb-4">
         <div class="d-flex align-items-center gap-2">
           <span class="error-icon"></span>
-          <span class="text-black">404 - Error occurred</span>
+          <span class="text-black">{{ errmsg }}</span>
         </div>
       </div>
       }
@@ -34,7 +34,7 @@
       <!-- Price Input -->
       <div class="form-floating mb-4 position-relative">
         <input
-          type="tel"
+          type="number"
           formControlName="price"
           class="form-control"
           id="priceInput"
@@ -44,7 +44,45 @@
         @if (adddrinkForm.get('price')?.errors &&
         adddrinkForm.get('price')?.touched) {
         <div class="error-tooltip">
-          <span class="error-icon"></span> Price is required
+          <span class="error-icon"></span> Price is required and must be a
+          positive number
+        </div>
+        }
+      </div>
+
+      <!-- Union Price Input -->
+      <div class="form-floating mb-4 position-relative">
+        <input
+          type="number"
+          formControlName="unionPrice"
+          class="form-control"
+          id="unionPriceInput"
+          placeholder="Enter union price"
+        />
+        <label for="unionPriceInput">Union Price</label>
+        @if (adddrinkForm.get('unionPrice')?.errors &&
+        adddrinkForm.get('unionPrice')?.touched) {
+        <div class="error-tooltip">
+          <span class="error-icon"></span> Union Price must be a positive number
+        </div>
+        }
+      </div>
+
+      <!-- Dentistry Price Input -->
+      <div class="form-floating mb-4 position-relative">
+        <input
+          type="number"
+          formControlName="dentistryPrice"
+          class="form-control"
+          id="dentistryPriceInput"
+          placeholder="Enter dentistry price"
+        />
+        <label for="dentistryPriceInput">Dentistry Price</label>
+        @if (adddrinkForm.get('dentistryPrice')?.errors &&
+        adddrinkForm.get('dentistryPrice')?.touched) {
+        <div class="error-tooltip">
+          <span class="error-icon"></span> Dentistry Price must be a positive
+          number
         </div>
         }
       </div>
@@ -52,7 +90,7 @@
       <!-- Submit Button -->
       <button
         [disabled]="adddrinkForm.invalid"
-        class="btn btn-primary btn-lg fs-6 px-5 py-2 mt-3"
+        class="btn btn-primary btn-lg w-100 px-5 py-2 mt-3"
       >
         @if (spiner) {
         <i class="fa fa-spinner fa-spin me-2"></i> Adding... } @else { Add }

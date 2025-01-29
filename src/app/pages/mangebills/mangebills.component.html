@@ -87,10 +87,12 @@
 <section class="m-5">
   <div class="container bg-light rounded-3 p-4 text-dark text-center">
     <h1 class="bill-header fw-bold text-dark mb-3">
-      Bill For Mr. {{ employeeName }}
+      Invoice Bill for: {{ employeeName }}
     </h1>
     <h2 class="date-header fw text-dark mb-4">
-      Date: From {{ BillForm.value.startDate }} To {{ BillForm.value.endDate }}
+      Billing Period:
+      <span class="font-italic">{{ BillForm.value.startDate }}</span> to
+      <span class="font-italic">{{ BillForm.value.endDate }}</span>
     </h2>
 
     <!-- Bill Details Table -->
@@ -128,7 +130,7 @@
     </div>
 
     <!-- Pay Bill Button -->
-    @if (!showOrders[0].paid) {
+    @if (!showOrders[0].paid && !paymentSuccessful) {
     <button
       class="btn btn-success pay-btn mt-4 mb-3 d-flex align-items-center justify-content-center"
       [disabled]="showOrders[0].paid"
@@ -150,31 +152,6 @@
   </div>
 </section>
 }
-
-<!-- @if (come) {
-<section class="m-5">
-  <div class="container bg-color rounded-3 p-4 text-white text-center">
-    <h1>
-      <span class="fw-bold text-white"
-        >This bill is for {{ showone.employee }}</span
-      >
-    </h1>
-    <p>
-      Total: <span class="fw-bold text-white">{{ showone.totalBill }} EGP</span>
-    </p>
-    <p>
-      Paid: <span class="fw-bold text-white">{{ showone.orders[0].paid }}</span>
-    </p>
-
-    @if (!showone.orders[0].paid) {
-    <button class="btn btn-success mt-3" (click)="markAsPaid()">
-      Pay Bill
-    </button>
-    }
-  </div>
-</section>
-} -->
-
 <!-- Toast Notification -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
   <div

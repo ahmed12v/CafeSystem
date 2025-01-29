@@ -16,7 +16,7 @@ export class MangEmpComponent implements OnInit {
   @ViewChild('successToast', { static: false }) successToast!: ElementRef; // Toast element reference
   @ViewChild('errorToast', { static: false }) errorToast!: ElementRef; // Error toast reference
 
-  empList!: EmpData[];
+  empList: EmpData[] = [];
   dataCome: boolean = false;
   empToDelete: string | null = null; // Track which employee to delete
   modalInstance: any;

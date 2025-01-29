@@ -6,40 +6,38 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-userdata',
   standalone: true,
-  imports: [ RouterLink ],
+  imports: [RouterLink],
   templateUrl: './userdata.component.html',
-  styleUrl: './userdata.component.css'
+  styleUrl: './userdata.component.css',
 })
 export class UserdataComponent implements OnInit {
-  
   ngOnInit(): void {
-    if(typeof localStorage != 'undefined')
-      localStorage.setItem('last Page' , '/getme')
+    if (typeof localStorage != 'undefined') {
+      localStorage.setItem('last Page', '/getme');
 
-    /////////////////// call ////////////////
-    this.getUserdata();
-   
+      /////////////////// call ////////////////
+      this.getUserdata();
+    } else {
+      console.warn('localStorage is not available in this environment.');
+    }
   }
-  constructor( private _UserDataService:UserDataService){}
+  constructor(private _UserDataService: UserDataService) {}
 
-  getUserdata()
-  {
-    this.dataCome=true;
-     this._UserDataService.getUserData().subscribe({
-      next:res=>{
+  getUserdata() {
+    this.dataCome = true;
+    this._UserDataService.getUserData().subscribe({
+      next: (res) => {
         //console.log(res);
-        this.userData=res.data;
-        this.dataCome=false
+        this.userData = res.data;
+        this.dataCome = false;
       },
-      error:err=>{
+      error: (err) => {
         console.log(err);
-        this.dataCome=false
-
-        
-      }
-     })
+        this.dataCome = false;
+      },
+    });
   }
   ///////////////////////////
-  userData!:Data;
-  dataCome:boolean=false; 
+  userData!: Data;
+  dataCome: boolean = false;
 }

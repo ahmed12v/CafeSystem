@@ -21,3 +21,88 @@
 .spin-c{
     color:rgb(209, 162, 80) ;
 }
+
+/* Button Group Styling */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn.active {
+    border: 2px solid #fff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .btn-group {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .btn {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+
+  /* Add Drink Button Styling */
+.add-drink-btn {
+  background: linear-gradient(135deg, rgb(0, 0, 0), rgb(0, 0, 0));
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.add-drink-btn:hover {
+  background: linear-gradient(135deg, #e64a19, #e64a19);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.add-drink-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.add-drink-btn i {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .add-drink-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}

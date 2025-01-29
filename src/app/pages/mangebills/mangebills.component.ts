@@ -49,6 +49,7 @@ export class MangebillsComponent implements OnInit {
   startDate: string = '';
   endDate: string = '';
   orders: any[] = [];
+  paymentSuccessful: boolean = false;
 
   ngOnInit(): void {
     if (typeof localStorage !== 'undefined') {
@@ -155,6 +156,7 @@ export class MangebillsComponent implements OnInit {
               'Success',
               { timeOut: 3000, closeButton: true, progressBar: true }
             );
+            this.paymentSuccessful = true;
           },
         });
     }
@@ -166,7 +168,6 @@ export class MangebillsComponent implements OnInit {
       next: (res) => {
         this.dataComee = false;
         this.empList = res.data;
-        // console.log(this.empList);
       },
       error: (err) => {
         console.log(err);
