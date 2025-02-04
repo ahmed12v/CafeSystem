@@ -161,6 +161,47 @@
   border-color: #d9534f; /* Error focus border color */
 }
 
-  
+/* Ensure the container fits within a single page */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-container {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Hide buttons and other unnecessary elements */
+  .print-btn,
+  .pay-btn {
+    display: none !important;
+  }
+
+  /* Adjust table and font sizes for printing */
+  table {
+    width: 100% !important;
+    font-size: 12px !important;
+  }
+
+  h3, h5, p {
+    margin: 5px 0 !important;
+  }
+
+  /* Scale down content if it exceeds the page */
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  .print-container {
+    transform: scale(0.9); /* Adjust scale if needed */
+    transform-origin: top left;
+  }
+}  
   
   
