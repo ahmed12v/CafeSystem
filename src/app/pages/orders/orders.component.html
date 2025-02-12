@@ -1,15 +1,19 @@
 <section class="container mt-5">
   <h1 class="text-center mb-4">Employee Orders</h1>
   <hr />
-  @if (isLoading) {
-  <div class="text-center">
-    <p>Loading orders...</p>
+  @if (isLoading ) {
+  <div class="spinner-container text-center">
+    <div class="spinner-border text-primary spinner-size" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="spinner-text mt-3">Loading orders...</p>
   </div>
+
   } @if (!isLoading && orders.length === 0) {
   <div class="text-center">
     <p>No orders found.</p>
   </div>
-  } @if (!isLoading && orders.length > 0) {
+  }@if (!isLoading && orders.length > 0) {
   <table class="table table-striped table-white">
     <thead>
       <tr>
@@ -22,7 +26,15 @@
     <tbody>
       @for (order of orders; track order.id) {
       <tr>
-        <td>{{ order.employeeName }}</td>
+        <td>
+          <a
+            [routerLink]="['/orders', order.employeeName]"
+            class="btn btn-link text-dark fw-bold employee-link"
+          >
+            {{ order.employeeName }}
+          </a>
+        </td>
+
         <td>{{ order.totalBillPrice }} EGP</td>
         <td>
           <span

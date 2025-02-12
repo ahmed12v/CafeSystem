@@ -19,6 +19,7 @@ import { UserdataComponent } from './addtions/userdata/userdata.component';
 import { UpdateUserdataComponent } from './addtions/update-userdata/update-userdata.component';
 import { UpdateUserPasswordComponent } from './addtions/update-user-password/update-user-password.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { EmployeeOrdersComponent } from './employee-orders/employee-orders.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -42,6 +43,7 @@ export const routes: Routes = [
   ///////////////////////////////////////////
   { path: 'bills', component: MangebillsComponent },
   { path: 'orders', component: OrdersComponent },
+  { path: 'orders/:employeeName', component: EmployeeOrdersComponent },
   ///////////////////////////////////////////
   { path: 'drink', component: MangDrinksComponent },
   { path: 'adddrink', component: AddDrinkComponent },

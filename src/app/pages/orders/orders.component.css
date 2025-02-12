@@ -9,4 +9,15 @@ table {
   button {
     width: 100px;
   }
+  .employee-link {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, text-decoration 0.3s;
+  }
   
+  .employee-link:hover {
+    background-color: #f0f8ff;
+    text-decoration: underline;
+  }
+    

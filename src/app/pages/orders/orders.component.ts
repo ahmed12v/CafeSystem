@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OrdersService } from 'src/app/servess/pages/orders.service';
 // import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -7,7 +8,9 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
+  standalone: true,
   styleUrls: ['./orders.component.css'],
+  imports: [RouterLink],
 })
 export class OrdersComponent implements OnInit {
   @ViewChild('successToast', { static: false }) successToast!: ElementRef;
@@ -26,6 +29,7 @@ export class OrdersComponent implements OnInit {
   }
 
   fetchOrders(): void {
+    this.isLoading = true;
     this.ordersService.getOrders().subscribe({
       next: (res) => {
         this.orders = res.data.employees.map((order: any) => ({

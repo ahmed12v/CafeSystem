@@ -1,0 +1,140 @@
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .badge {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+
+  .spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .spinner-border {
+    animation: spin 1s linear infinite;
+  }
+  
+  .spinner-size {
+    width: 3rem;
+    height: 3rem;
+    border-width: 4px;
+  }
+  
+  .spinner-text {
+    font-size: 1.25rem;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+    animation: fadeInText 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes fadeInText {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  .toast {
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .hover-effect:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  } 
+
+/* Base styles for buttons */
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+  }
+  
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #000;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+  }
+  
+  /* Hover and active states */
+  .btn-warning:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+  }
+  
+  .btn:active {
+    transform: scale(0.95);
+  }
+  
+  /* Icons and text alignment */
+  .btn i {
+    margin-right: 8px;
+  }
+  
+  .button-text {
+    display: inline-block;
+  }
+  
+  /* Responsive adjustments for mobile */
+  @media (max-width: 576px) {
+    .button-container {
+      flex-direction: column; /* Stack buttons vertically */
+      gap: 8px;
+    }
+  
+    .btn {
+      width: 100%; /* Full width on mobile */
+      padding: 12px 15px; /* Slightly larger for easier tapping */
+    }
+  
+    .btn i {
+      margin-right: 6px;
+    }
+  }
