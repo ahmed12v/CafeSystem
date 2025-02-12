@@ -22,7 +22,9 @@
     <tbody>
       @for (order of orders; track order.id) {
       <tr>
-        <td>{{ order.employeeName }}</td>
+        <td (click)="getEmpl(order.employeeName)" style="cursor: pointer">
+          {{ order.employeeName }}
+        </td>
         <td>{{ order.totalBillPrice }} EGP</td>
         <td>
           <span

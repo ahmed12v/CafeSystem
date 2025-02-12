@@ -4,7 +4,9 @@
     (ngSubmit)="TakeOrder()"
     class="shadow-lg p-4 rounded-3 bg-light"
   >
-    <h2 class="text-center fw-bold mb-4">Take an Order</h2>
+    <h2 class="text-center fw-bold mb-4">
+      {{ isEditable ? "Update Order" : "Take an Order" }}
+    </h2>
 
     <!-- Employee Name -->
     <div class="mb-4">
@@ -26,6 +28,7 @@
 
     <!-- Add Drinks -->
     <div class="mb-4">
+      @if(!isEditable){
       <label class="form-label fw-semibold">Add Drinks</label>
       <button
         class="btn btn-outline-success d-block mb-3"
@@ -35,50 +38,105 @@
         <i class="fa-solid fa-circle-plus"></i> Add Drink
       </button>
 
+      }
       <!-- Drinks List -->
-      <div class="container" formArrayName="drinks">
-        @for (item of drinks.controls; track item; let i = $index) {
-        <div class="row mb-3 align-items-center" [formGroupName]="i">
+      <div class="container p-0" formArrayName="drinks">
+        @if (isEditable) { @for (order of orders; track $index) {
+        <div class="mb-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="fw-bold">Order {{ $index + 1 }}</h4>
+            <p class="fw-bold">{{ order.date }}</p>
+          </div>
+          <div></div>
+          @for (item of order.drinks; track $index) {
+          <div
+            class="row mb-3 align-items-center row-gap-2"
+            [formGroupName]="$index"
+          >
+            <div class="col-lg-7 mb-2 mb-lg-0 align-items-center">
+              <select class="form-select p-3" [value]="item.drinkId._id">
+                <option selected disabled>Choose drink...</option>
+                @for (drink of drinklist; track $index) {
+                <option [value]="drink._id">{{ drink.name }}</option>
+                }
+              </select>
+            </div>
+            <div class="col-lg-3 mb-2 mb-lg-0">
+              <input
+                type="number"
+                formControlName="quantity"
+                class="form-control"
+                placeholder="Quantity"
+              />
+            </div>
+            <div class="col-lg-2 text-end gap-2">
+              <button
+                class="btn btn-outline-danger"
+                (click)="removeDrinks($index)"
+              >
+                <i class="fa-solid fa-circle-minus"></i>
+              </button>
+              @if (isEditable) {
+              <button
+                class="btn btn-outline-primary"
+                type="button"
+                (click)="updateOrder($index, order._id, item.drinkId._id)"
+              >
+                <i class="fa-solid fa-pen"></i></button
+              >}
+            </div>
+          </div>
+          }
+        </div>
+        } }@else { @for (item of drinks.controls; track $index) {
+        <div class="row mb-3 align-items-center" [formGroupName]="$index">
           <div class="col-lg-7 mb-2 mb-lg-0">
-            <select class="form-select p-3" formControlName="drinkId" required>
+            <select class="form-select p-3" [formControlName]="'drinkId'">
               <option selected disabled>Choose drink...</option>
-              @for (item of drinklist; track $index) {
-              <option [value]="item._id">{{ item.name }}</option>
+              @for (drink of drinklist; track $index) {
+              <option [value]="drink._id">{{ drink.name }}</option>
               }
             </select>
           </div>
           <div class="col-lg-3 mb-2 mb-lg-0">
             <input
               type="number"
-              formControlName="quantity"
+              [formControlName]="'quantity'"
               class="form-control"
               placeholder="Quantity"
-              required
             />
           </div>
-          <div class="col-lg-2 text-end">
-            <button class="btn btn-outline-danger" (click)="removeDrinks(i)">
+          <div class="col-lg-2 text-end gap-2">
+            <button
+              class="btn btn-outline-danger"
+              (click)="removeDrinks($index)"
+            >
               <i class="fa-solid fa-circle-minus"></i>
             </button>
+            @if (isEditable) {
+            <button
+              class="btn btn-outline-primary"
+              type="button"
+              (click)="updateOrder($index)"
+            >
+              <i class="fa-solid fa-pen"></i></button
+            >}
           </div>
         </div>
-        }
+        } }
       </div>
     </div>
 
     <!-- Date -->
+    @if (!isEditable) {
     <div class="mb-4">
       <label for="date" class="form-label fw-semibold">Order Date</label>
-      <input
-        type="date"
-        formControlName="date"
-        class="form-control p-3"
-        id="date"
-        required
-      />
+      <input type="date" formControlName="date" class="form-control p-3" />
     </div>
+    }
 
     <!-- Submit Button -->
+    @if (!isEditable) {
     <div class="text-center">
       <button class="btn btn-success fs-5 px-4 py-2">
         @if (spiner) {
@@ -88,6 +146,7 @@
         }
       </button>
     </div>
+    }
   </form>
 </section>
 

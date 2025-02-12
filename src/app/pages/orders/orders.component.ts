@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OrdersService } from 'src/app/servess/pages/orders.service';
 // import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -15,14 +16,31 @@ export class OrdersComponent implements OnInit {
   finalTotal: number = 0;
   isLoading = true;
   isPaying: any = false;
-
+  employeeName: any;
   constructor(
     private ordersService: OrdersService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router,
+    private activeRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.fetchOrders();
+    this.activeRoute.paramMap.subscribe((params) => {
+      this.employeeName = params.get('id') || '';
+      if (this.employeeName) {
+        this.getOrders();
+      }
+    });
+  }
+
+  getOrders() {
+    this.ordersService
+      .getOrderByEmplyeeName(this.employeeName)
+      .subscribe((res: any) => {
+        console.log(res)
+        this.orders = res.orders;
+      });
   }
 
   fetchOrders(): void {
@@ -65,5 +83,9 @@ export class OrdersComponent implements OnInit {
         this.toastr.error('Failed to mark bill as paid');
       },
     });
+  }
+
+  getEmpl(employeeName: string) {
+    this.router.navigate(['/employee-orders', employeeName]);
   }
 }

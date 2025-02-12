@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { MangEmpComponent } from './pages/mang-emp/mang-emp.component';
 import { MangOrderComponent } from './pages/mang-order/mang-order.component';
@@ -19,6 +19,8 @@ import { UserdataComponent } from './addtions/userdata/userdata.component';
 import { UpdateUserdataComponent } from './addtions/update-userdata/update-userdata.component';
 import { UpdateUserPasswordComponent } from './addtions/update-user-password/update-user-password.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { inject } from '@angular/core';
+import { OrdersService } from './servess/pages/orders.service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -42,6 +44,14 @@ export const routes: Routes = [
   ///////////////////////////////////////////
   { path: 'bills', component: MangebillsComponent },
   { path: 'orders', component: OrdersComponent },
+  {
+    path: 'employee-orders/:name',
+    component: MangOrderComponent,
+    resolve: {
+      orderDetails: (route: ActivatedRouteSnapshot) =>
+        inject(OrdersService).getOrderByEmplyeeName(route.params['name']),
+    },
+  },
   ///////////////////////////////////////////
   { path: 'drink', component: MangDrinksComponent },
   { path: 'adddrink', component: AddDrinkComponent },
