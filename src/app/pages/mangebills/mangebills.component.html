@@ -149,7 +149,7 @@
         @if (!showOrders[0].paid && !paymentSuccessful) {
         <button
           class="pay-btn btn btn-success d-flex align-items-center"
-          (click)="payPartialBill()"
+          (click)="openConfirmModal(showOrders[0])"
         >
           <i class="fa fa-credit-card me-2"></i> Partial Pay
         </button>
@@ -188,6 +188,51 @@
         data-bs-dismiss="toast"
         aria-label="Close"
       ></button>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="confirmPartialPaymentModal"
+  tabindex="-1"
+  aria-labelledby="confirmPartialPaymentModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5
+          class="modal-title justify-content-center font-monospace"
+          id="confirmPartialPaymentModalLabel"
+        >
+          Confirm Partial Payment
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body font-monospace">
+        Are you sure you want to make a partial payment
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="payPartialBill()"
+          [disabled]="spiner"
+        >
+          @if (spiner) {
+          <span> <i class="fa fa-spinner fa-spin"></i> Paying... </span>
+          }@else { Confirm }
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -50,6 +50,7 @@ export class MangebillsComponent implements OnInit {
   endDate: string = '';
   orders: any[] = [];
   paymentSuccessful: boolean = false;
+  confirmModal: any;
   generatedTime: string = new Date()
     .toLocaleString('en-US', {
       weekday: 'short', // "Wed"
@@ -134,6 +135,14 @@ export class MangebillsComponent implements OnInit {
     }
   }
 
+  openConfirmModal(bill: any) {
+    const modalElement = document.getElementById('confirmPartialPaymentModal');
+    if (modalElement) {
+      this.confirmModal = new bootstrap.Modal(modalElement);
+      this.confirmModal.show();
+    }
+  }
+
   payPartialBill() {
     if (this.BillForm.valid) {
       const formData = {
@@ -151,6 +160,9 @@ export class MangebillsComponent implements OnInit {
         .pipe(
           finalize(() => {
             this.spiner = false;
+            if (this.confirmModal) {
+              this.confirmModal.hide();
+            }
           }),
           catchError((err) => {
             this.Toast.error(
