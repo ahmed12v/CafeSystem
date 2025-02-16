@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DrinkService } from '../../servess/pages/drink.service';
 import { drinkRes } from '../../interfaces/drinks';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-mang-drinks',
@@ -13,6 +15,9 @@ import { NgClass } from '@angular/common';
   styleUrl: './mang-drinks.component.css',
 })
 export class MangDrinksComponent implements OnInit {
+  @ViewChild('successToast', { static: false }) successToast!: ElementRef;
+  @ViewChild('errorToast', { static: false }) errorToast!: ElementRef;
+
   drinklist!: drinkRes[];
   dataCome: boolean = false;
   selectedPriceType!: string;
@@ -45,15 +50,28 @@ export class MangDrinksComponent implements OnInit {
 
   deletDrink(drnkid: string) {
     this._DrinkService.deletupdatEmp(drnkid).subscribe({
-      next: (res) => {
+      next: () => {
+        this.showToast(this.successToast); // Show success toast
         this.getDrinks();
       },
       error: (er) => {
-        console.log(er);
+        if (er.status === 400) {
+          this.errorToast.nativeElement.querySelector('.toast-body').innerText =
+            'This drink is associated with existing orders and cannot be deleted.';
+        } else {
+          this.errorToast.nativeElement.querySelector('.toast-body').innerText =
+            'An error occurred while deleting the drink. Please try again.';
+        }
+        this.showToast(this.errorToast); // Show error toast
+        console.error(er);
       },
     });
   }
 
+  private showToast(toastElement: ElementRef) {
+    const toast = new bootstrap.Toast(toastElement.nativeElement);
+    toast.show();
+  }
   showRegularPrice() {
     this.selectedPriceType = 'regular';
   }

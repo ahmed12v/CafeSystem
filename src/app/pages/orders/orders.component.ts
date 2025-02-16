@@ -14,11 +14,14 @@ declare var bootstrap: any;
 })
 export class OrdersComponent implements OnInit {
   @ViewChild('successToast', { static: false }) successToast!: ElementRef;
+  @ViewChild('confirmPaymentModal', { static: true })
+  confirmPaymentModal!: ElementRef;
+  selectedOrder: any = null;
   orders: any[] = [];
   finalTotal: number = 0;
   isLoading = true;
   isPaying: any = false;
-
+  isConfirming: any = false;
   constructor(
     private ordersService: OrdersService,
     private toastr: ToastrService
@@ -48,24 +51,62 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  payBill(order: any): void {
+  // payBill(order: any): void {
+  //   order.isPaying = true;
+  //   this.ordersService.markAsPaid(order.employeeName).subscribe({
+  //     next: () => {
+  //       this.toastr.success('Bill marked as paid successfully!');
+  //       order.isPaying = false;
+  //       // Update the UI
+  //       const order1 = this.orders.find(
+  //         (o) => o.employeeName === order.employeeName
+  //       );
+  //       if (order1) {
+  //         order.paid = true;
+  //       }
+  //       const toast = new bootstrap.Toast(this.successToast.nativeElement);
+  //       toast.show();
+  //     },
+  //     error: (err) => {
+  //       order.isPaying = false;
+  //       this.toastr.error('Failed to mark bill as paid');
+  //     },
+  //   });
+  // }
+
+  openConfirmModal(order: any): void {
+    this.selectedOrder = order;
+    const modal = new bootstrap.Modal(
+      document.getElementById('confirmPaymentModal')!
+    );
+    modal.show();
+  }
+
+  confirmPayment(): void {
+    if (!this.selectedOrder) return;
+
+    this.isConfirming = true;
+    const order = this.selectedOrder;
     order.isPaying = true;
+
     this.ordersService.markAsPaid(order.employeeName).subscribe({
       next: () => {
         this.toastr.success('Bill marked as paid successfully!');
         order.isPaying = false;
-        // Update the UI
-        const order1 = this.orders.find(
-          (o) => o.employeeName === order.employeeName
-        );
-        if (order1) {
-          order.paid = true;
+        order.paid = true;
+        this.isConfirming = false;
+
+        const modalElement = document.getElementById('confirmPaymentModal');
+        if (modalElement) {
+          const modalInstance = bootstrap.Modal.getInstance(modalElement);
+          if (modalInstance) {
+            modalInstance.hide();
+          }
         }
-        const toast = new bootstrap.Toast(this.successToast.nativeElement);
-        toast.show();
       },
-      error: (err) => {
+      error: () => {
         order.isPaying = false;
+        this.isConfirming = false;
         this.toastr.error('Failed to mark bill as paid');
       },
     });

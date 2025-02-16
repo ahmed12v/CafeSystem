@@ -48,7 +48,7 @@
           <button
             class="btn btn-success"
             [disabled]="order.isPaying || order.paid"
-            (click)="payBill(order)"
+            (click)="openConfirmModal(order)"
           >
             @if (order.isPaying) {
             <span><i class="fa fa-spin fa-spinner"></i></span>} Pay
@@ -75,4 +75,56 @@
     </div>
   </div>
   }
+
+  <!-- Confirmation Modal -->
+  <div
+    class="modal fade"
+    id="confirmPaymentModal"
+    tabindex="-1"
+    aria-labelledby="confirmPaymentLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5
+            class="modal-title justify-content-center font-monospace"
+            id="confirmPaymentLabel"
+          >
+            Confirm Payment
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body font-monospace">
+          Are you sure you want to Pay the bill for
+          <strong>{{ selectedOrder?.employeeName }}</strong
+          >?
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="confirmPayment()"
+            [disabled]="isConfirming"
+          >
+            @if (isConfirming) {
+            <span> <i class="fa fa-spinner fa-spin"></i> Paying... </span>
+            }@else { Confirm }
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

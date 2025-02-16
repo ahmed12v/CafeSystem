@@ -3,6 +3,7 @@
     <h1 class="display-4 ff fw-bold moving-text">Welcome To El-ethaad Cafe</h1>
     <p class="display-4 mt-3 fs-5 moving-text">Fithiy Management Cafe</p>
 
+    @if(!isLoggedIn) {
     <div class="mt-4">
       <button
         class="btn btn-light btn-lg px-4 py-2 fw-bold text-dark hovrr custom-btn"
@@ -11,6 +12,7 @@
         Log In
       </button>
     </div>
+    }
 
     <div class="social-icons mt-5 d-flex justify-content-center gap-4">
       <a class="text-white fs-3"><i class="fa-brands fa-facebook"></i></a>
