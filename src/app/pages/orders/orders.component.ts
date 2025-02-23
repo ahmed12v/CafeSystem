@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OrdersService } from 'src/app/servess/pages/orders.service';
@@ -10,7 +11,7 @@ declare var bootstrap: any;
   templateUrl: './orders.component.html',
   standalone: true,
   styleUrls: ['./orders.component.css'],
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
 })
 export class OrdersComponent implements OnInit {
   @ViewChild('successToast', { static: false }) successToast!: ElementRef;
@@ -22,6 +23,8 @@ export class OrdersComponent implements OnInit {
   isLoading = true;
   isPaying: any = false;
   isConfirming: any = false;
+  filteredOrders: any[] = []; // New filtered array
+  searchText: string = ''; // Input text for search
   constructor(
     private ordersService: OrdersService,
     private toastr: ToastrService
@@ -40,6 +43,7 @@ export class OrdersComponent implements OnInit {
           isPaying: false,
           paid: false,
         }));
+        this.filteredOrders = this.orders;
         this.finalTotal = res.data.finalTotal;
         this.isLoading = false;
       },
@@ -51,29 +55,17 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  // payBill(order: any): void {
-  //   order.isPaying = true;
-  //   this.ordersService.markAsPaid(order.employeeName).subscribe({
-  //     next: () => {
-  //       this.toastr.success('Bill marked as paid successfully!');
-  //       order.isPaying = false;
-  //       // Update the UI
-  //       const order1 = this.orders.find(
-  //         (o) => o.employeeName === order.employeeName
-  //       );
-  //       if (order1) {
-  //         order.paid = true;
-  //       }
-  //       const toast = new bootstrap.Toast(this.successToast.nativeElement);
-  //       toast.show();
-  //     },
-  //     error: (err) => {
-  //       order.isPaying = false;
-  //       this.toastr.error('Failed to mark bill as paid');
-  //     },
-  //   });
-  // }
-
+  search(): void {
+    const searchTerm = this.searchText.toLowerCase();
+    this.filteredOrders = this.orders.filter((order) =>
+      order.employeeName.toLowerCase().includes(searchTerm)
+    );
+  }
+  // Clear search input and reset orders
+  clearSearch(): void {
+    this.searchText = '';
+    this.filteredOrders = [...this.orders];
+  }
   openConfirmModal(order: any): void {
     this.selectedOrder = order;
     const modal = new bootstrap.Modal(

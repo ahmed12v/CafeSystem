@@ -1,6 +1,5 @@
 <section class="container mt-5">
-  <h1 class="text-center mb-4">Employee Orders</h1>
-  <hr />
+  <h1 class="page-title">Employee Orders</h1>
   @if (isLoading ) {
   <div class="spinner-container text-center">
     <div class="spinner-border text-primary spinner-size" role="status">
@@ -14,6 +13,25 @@
     <p>No orders found.</p>
   </div>
   }@if (!isLoading && orders.length > 0) {
+  <div class="search-container">
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="🔍 Search Employee Name..."
+        [(ngModel)]="searchText"
+        (input)="search()"
+        class="form-control search-input"
+      />
+      @if (searchText) {
+
+      <span class="clear-icon" (click)="clearSearch()">✖</span>
+      }
+    </div>
+    <!-- Show "Searching..." while typing -->
+    @if (searchText && filteredOrders.length === 0) {
+    <p class="search-feedback">No matching employees found 😕</p>
+    }
+  </div>
   <table class="table table-striped table-white">
     <thead>
       <tr>
@@ -24,7 +42,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (order of orders; track order.id) {
+      @for (order of filteredOrders; track order.id) {
       <tr>
         <td>
           <a
@@ -64,11 +82,8 @@
       style="max-width: 600px; border-radius: 15px"
     >
       <div class="card-body">
-        <h3 class="card-title text-dark fw-bold mb-3">
-          All Bills For All Employees
-        </h3>
+        <h3 class="card-title text-dark fw-bold mb-3">Total Revenue</h3>
         <h4 class="card-text text-dark">
-          Total Revenue:
           <span class="text-success fw-bold">{{ finalTotal }} EGP</span>
         </h4>
       </div>
