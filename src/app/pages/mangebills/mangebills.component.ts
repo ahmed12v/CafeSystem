@@ -21,9 +21,6 @@ export class MangebillsComponent implements OnInit {
   ngOnInit(): void {
     if (typeof localStorage != 'undefined')
       localStorage.setItem('last Page', '/bills');
-
-    ///////////////call//////////////
-    // this.getEmps();
   }
 
   constructor(
