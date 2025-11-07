@@ -10,7 +10,7 @@ import { SigninService } from '../../servess/athuntocation/signin.service';
 import { Login } from '../../interfaces/athuntocation/login';
 import { LoginService } from '../../servess/athuntocation/login.service';
 import { Router, RouterLink } from '@angular/router';
-import { PasswordPattern } from 'core/validators/password-pattern';
+// import { PasswordPattern } from 'core/validators/password-pattern';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,7 @@ export class LoginComponent {
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
       Validators.required,
-      Validators.pattern(PasswordPattern),
+      // Validators.pattern(PasswordPattern),
     ]),
   });
 

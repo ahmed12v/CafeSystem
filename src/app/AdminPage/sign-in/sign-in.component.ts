@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SigninService } from '../../servess/athuntocation/signin.service';
-import { PasswordPattern } from 'core/validators/password-pattern';
+// import { PasswordPattern } from 'core/validators/password-pattern';
 
 @Component({
   selector: 'app-sign-in',
@@ -29,7 +29,7 @@ export class SignInComponent {
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.pattern(PasswordPattern),
+        // Validators.pattern(PasswordPattern),
       ]),
       passwordConfirm: new FormControl(null, Validators.required),
     },
