@@ -35,13 +35,16 @@
 
       <!-- Role Field -->
       <div class="form-floating mb-4 position-relative">
-        <input
-          type="text"
+        <select
           formControlName="role"
           class="form-control"
           id="floatingRole"
-          placeholder="Enter employee role"
-        />
+        >
+          <option value="" disabled selected>Select role</option>
+          <option value="EMU">EMU</option>
+          <option value="union">union</option>
+          <option value="DENTISTRY">DENTISTRY</option>
+        </select>
         <label for="floatingRole" class="text-muted">Employee Role</label>
 
         <!-- Validation Error Tooltip -->

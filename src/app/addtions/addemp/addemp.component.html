@@ -28,15 +28,18 @@
         }
       </div>
 
-      <!-- Role Input -->
+      <!-- Role Dropdown -->
       <div class="form-floating mb-4 position-relative">
-        <input
-          type="text"
+        <select
           formControlName="role"
           class="form-control"
           id="roleInput"
-          placeholder="Enter role"
-        />
+        >
+          <option value="" disabled selected>Select role</option>
+          <option value="EMU">EMU</option>
+          <option value="union">union</option>
+          <option value="DENTISTRY">DENTISTRY</option>
+        </select>
         <label for="roleInput">Role</label>
         @if (addempForm.get('role')?.errors && addempForm.get('role')?.touched)
         {
